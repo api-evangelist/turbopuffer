@@ -1,0 +1,169 @@
+aid: turbopuffer
+url: https://raw.githubusercontent.com/api-evangelist/turbopuffer/refs/heads/main/apis.yml
+name: turbopuffer
+kind: company
+description: >-
+  turbopuffer is a serverless search engine that combines vector and full-text
+  (BM25) search on top of object storage. It exposes a single REST API organized
+  around namespaces - each namespace stores documents with vector embeddings,
+  attributes, and full-text indexes - and supports approximate nearest neighbor,
+  full-text, and hybrid query patterns with filtering. Official client libraries
+  ship for Python, TypeScript, Go, Java, and Ruby, with a community-maintained
+  Rust client. Pricing is usage-based on storage, writes, and queries.
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Vector Search
+  - Full-Text Search
+  - Hybrid Search
+  - Serverless
+  - Object Storage
+  - RAG
+created: '2026-05-23'
+modified: '2026-05-23'
+specificationVersion: '0.19'
+apis:
+  - aid: turbopuffer:rest-api
+    name: turbopuffer REST API
+    description: >-
+      Single REST API for all turbopuffer operations - namespace metadata, write
+      (upsert / patch / delete), vector ANN query, full-text BM25 query, and
+      hybrid query - with bearer-token authentication. The default base host is
+      api.turbopuffer.com; namespaces may also be addressed through region-pinned
+      hosts such as gcp-us-east4.turbopuffer.com or aws-us-east-1.turbopuffer.com
+      to minimize egress and latency.
+    humanURL: https://turbopuffer.com/docs
+    baseURL: https://api.turbopuffer.com
+    tags:
+      - REST
+      - Vector Search
+      - Full-Text Search
+      - Hybrid Search
+    properties:
+      - type: Documentation
+        url: https://turbopuffer.com/docs
+      - type: Authentication
+        url: https://turbopuffer.com/docs/auth
+      - type: Quickstart
+        url: https://turbopuffer.com/docs/quickstart
+  - aid: turbopuffer:write
+    name: turbopuffer Write API
+    description: >-
+      Endpoints for upserting, patching, and deleting documents within a
+      namespace. Writes are batched into a per-namespace write-ahead log and
+      become queryable once committed to object storage.
+    humanURL: https://turbopuffer.com/docs/write
+    baseURL: https://api.turbopuffer.com
+    tags:
+      - Write
+      - Upsert
+      - Namespaces
+    properties:
+      - type: Documentation
+        url: https://turbopuffer.com/docs/write
+  - aid: turbopuffer:query
+    name: turbopuffer Query API
+    description: >-
+      Unified query endpoint that runs vector ANN, full-text BM25, and hybrid
+      queries against a namespace, with attribute filters, top-k, and ranking
+      controls.
+    humanURL: https://turbopuffer.com/docs/query
+    baseURL: https://api.turbopuffer.com
+    tags:
+      - Query
+      - Vector
+      - BM25
+      - Hybrid
+    properties:
+      - type: Documentation
+        url: https://turbopuffer.com/docs/query
+  - aid: turbopuffer:namespaces
+    name: turbopuffer Namespaces API
+    description: >-
+      Namespace lifecycle and metadata endpoints - list namespaces, read
+      schema / dimensions / row count, warm the cache, export contents, and
+      delete a namespace.
+    humanURL: https://turbopuffer.com/docs/namespaces
+    baseURL: https://api.turbopuffer.com
+    tags:
+      - Namespaces
+      - Metadata
+      - Admin
+    properties:
+      - type: Documentation
+        url: https://turbopuffer.com/docs/namespaces
+  - aid: turbopuffer:python-sdk
+    name: turbopuffer Python SDK
+    description: >-
+      Official Python client library for the turbopuffer REST API.
+    humanURL: https://github.com/turbopuffer/turbopuffer-python
+    baseURL: https://github.com/turbopuffer/turbopuffer-python
+    tags:
+      - SDK
+      - Python
+    properties:
+      - type: Repository
+        url: https://github.com/turbopuffer/turbopuffer-python
+  - aid: turbopuffer:typescript-sdk
+    name: turbopuffer TypeScript SDK
+    description: >-
+      Official TypeScript / JavaScript client library for the turbopuffer REST
+      API, published as @turbopuffer/turbopuffer on npm.
+    humanURL: https://github.com/turbopuffer/turbopuffer-typescript
+    baseURL: https://github.com/turbopuffer/turbopuffer-typescript
+    tags:
+      - SDK
+      - TypeScript
+      - JavaScript
+    properties:
+      - type: Repository
+        url: https://github.com/turbopuffer/turbopuffer-typescript
+  - aid: turbopuffer:java-sdk
+    name: turbopuffer Java SDK
+    description: >-
+      Official Java client library for the turbopuffer REST API.
+    humanURL: https://github.com/turbopuffer/turbopuffer-java
+    baseURL: https://github.com/turbopuffer/turbopuffer-java
+    tags:
+      - SDK
+      - Java
+    properties:
+      - type: Repository
+        url: https://github.com/turbopuffer/turbopuffer-java
+  - aid: turbopuffer:ruby-sdk
+    name: turbopuffer Ruby SDK
+    description: >-
+      Official Ruby client library for the turbopuffer REST API.
+    humanURL: https://github.com/turbopuffer/turbopuffer-ruby
+    baseURL: https://github.com/turbopuffer/turbopuffer-ruby
+    tags:
+      - SDK
+      - Ruby
+    properties:
+      - type: Repository
+        url: https://github.com/turbopuffer/turbopuffer-ruby
+  - aid: turbopuffer:go-sdk
+    name: turbopuffer Go SDK
+    description: >-
+      Official Go client library for the turbopuffer REST API.
+    humanURL: https://github.com/turbopuffer/turbopuffer-go
+    baseURL: https://github.com/turbopuffer/turbopuffer-go
+    tags:
+      - SDK
+      - Go
+    properties:
+      - type: Repository
+        url: https://github.com/turbopuffer/turbopuffer-go
+common:
+  - type: Website
+    url: https://turbopuffer.com/
+  - type: Documentation
+    url: https://turbopuffer.com/docs
+  - type: GitHub
+    url: https://github.com/turbopuffer
+  - type: Pricing
+    url: https://turbopuffer.com/pricing
+  - type: Architecture
+    url: https://turbopuffer.com/docs/architecture
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
