@@ -164,6 +164,8 @@ common:
     url: https://turbopuffer.com/pricing
   - type: Architecture
     url: https://turbopuffer.com/docs/architecture
+  - type: LLMsTxt
+    url: https://turbopuffer.com/llms.txt
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
