@@ -1,0 +1,131 @@
+openapi: 3.1.0
+info:
+  title: turbopuffer API
+  version: v2
+  description: >-
+    turbopuffer is a serverless search engine combining vector and full-text
+    (BM25) search on top of object storage. The API is organized around
+    namespaces; each namespace stores documents with vector embeddings,
+    attributes, and full-text indexes.
+  contact:
+    name: turbopuffer
+    url: https://turbopuffer.com/docs
+servers:
+  - url: https://api.turbopuffer.com
+    description: turbopuffer production API
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API key passed as `Authorization: Bearer <API_KEY>`.
+  schemas:
+    UpsertRequest:
+      type: object
+      properties:
+        upsert_rows:
+          type: array
+          description: Row-oriented documents with id and attribute fields.
+          items:
+            type: object
+        upsert_columns:
+          type: object
+          description: Column-oriented format with id array and attribute arrays.
+        distance_metric:
+          type: string
+          enum:
+            - cosine_distance
+            - euclidean_squared
+        schema:
+          type: object
+        return_affected_ids:
+          type: boolean
+    QueryRequest:
+      type: object
+      properties:
+        rank_by:
+          type: array
+          items: {}
+        top_k:
+          type: integer
+        filters:
+          type: array
+          items: {}
+        include_attributes:
+          type: array
+          items:
+            type: string
+    NamespaceMetadata:
+      type: object
+      properties:
+        approx_count:
+          type: integer
+        dimensions:
+          type: integer
+        schema:
+          type: object
+security:
+  - bearerAuth: []
+paths:
+  /v2/namespaces/{namespace}:
+    parameters:
+      - in: path
+        name: namespace
+        required: true
+        schema:
+          type: string
+    post:
+      summary: Write (upsert) documents to a namespace
+      operationId: upsertDocuments
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpsertRequest'
+      responses:
+        '200':
+          description: Upsert acknowledged
+          content:
+            application/json:
+              schema:
+                type: object
+    get:
+      summary: Get namespace metadata
+      operationId: getNamespaceMetadata
+      responses:
+        '200':
+          description: Namespace metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NamespaceMetadata'
+    delete:
+      summary: Delete a namespace
+      operationId: deleteNamespace
+      responses:
+        '200':
+          description: Namespace deleted
+  /v2/namespaces/{namespace}/query:
+    parameters:
+      - in: path
+        name: namespace
+        required: true
+        schema:
+          type: string
+    post:
+      summary: Query documents (vector, full-text, hybrid)
+      operationId: queryNamespace
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryRequest'
+      responses:
+        '200':
+          description: Query results
+          content:
+            application/json:
+              schema:
+                type: object
