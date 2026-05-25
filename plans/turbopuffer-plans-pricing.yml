@@ -4,48 +4,193 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: turbopuffer
 providerId: turbopuffer
 created: '2026-05-22'
-modified: '2026-05-22'
+modified: '2026-05-25'
 tags:
-- Vector Search
-- Full-Text Search
-- Hybrid Search
-- Serverless
-- Object Storage
-- RAG
-description: Machine-readable plans scaffold for the turbopuffer API surface. Conforms to the API Commons Plans schema. Tier
-  limits and prices are scaffold defaults; replace with provider-published values.
+  - Vector Search
+  - Full-Text Search
+  - Hybrid Search
+  - Serverless
+  - Object Storage
+  - RAG
+description: >-
+  Published plans for turbopuffer's serverless vector + full-text search API.
+  Sourced from https://turbopuffer.com/pricing. Plans are usage-based on top
+  of monthly minimums; an enterprise tier adds a 35% usage premium above the
+  monthly minimum.
 plans:
-- id: turbopuffer-free
-  name: Free
-  type: freemium
-  description: Free entry tier for the turbopuffer API surface. Intended for evaluation, prototyping, and low-volume integrations.
-    Real limits and pricing must be reconciled with the provider's published plan documentation.
-  entries:
-  - label: API Requests
-    description: Monthly API request quota across all included endpoints
-    name: api_requests
-    type: quota
-    metric: requests
-    limit: 1000
-    timeFrame: month
-    geo: global
-    domains:
-    - https://api.turbopuffer.com
-    unit: 1
-    price: '0.00'
-    userMultiplied: false
-  - label: Rate Limit
-    description: Maximum requests per minute on the free tier
-    name: rate_limit
-    type: rate
-    metric: requests_per_minute
-    limit: 10
-    timeFrame: minute
-    geo: global
-    domains:
-    - https://api.turbopuffer.com
-    unit: 1
-    price: '0.00'
+  - id: turbopuffer-launch
+    name: Launch
+    type: paid
+    description: >-
+      Entry commercial tier with multi-tenant deployment, SOC 2 and GDPR
+      compliance, and community support. Minimum monthly commitment $64.
+    entries:
+      - label: Monthly Minimum
+        description: Minimum monthly spend for the Launch tier
+        name: monthly_minimum
+        type: subscription
+        metric: usd
+        limit: 64
+        timeFrame: month
+        geo: global
+        domains:
+          - https://api.turbopuffer.com
+        unit: 1
+        price: '64.00'
+        userMultiplied: false
+      - label: Compliance
+        description: SOC 2 Type II and GDPR
+        name: compliance
+        type: feature
+        geo: global
+        domains:
+          - https://api.turbopuffer.com
+        price: included
+        userMultiplied: false
+      - label: Support
+        description: Community support
+        name: support
+        type: feature
+        geo: global
+        domains:
+          - https://api.turbopuffer.com
+        price: included
+        userMultiplied: false
+  - id: turbopuffer-scale
+    name: Scale
+    type: paid
+    description: >-
+      Production tier adding HIPAA-ready BAA, SSO, audit logs, a private
+      Slack channel, and 8x5 support hours. Minimum monthly commitment $256.
+    entries:
+      - label: Monthly Minimum
+        description: Minimum monthly spend for the Scale tier
+        name: monthly_minimum
+        type: subscription
+        metric: usd
+        limit: 256
+        timeFrame: month
+        geo: global
+        domains:
+          - https://api.turbopuffer.com
+        unit: 1
+        price: '256.00'
+        userMultiplied: false
+      - label: SSO
+        description: Single sign-on
+        name: sso
+        type: feature
+        geo: global
+        domains:
+          - https://api.turbopuffer.com
+        price: included
+        userMultiplied: false
+      - label: Audit Logs
+        description: Tenant audit logs
+        name: audit_logs
+        type: feature
+        geo: global
+        domains:
+          - https://api.turbopuffer.com
+        price: included
+        userMultiplied: false
+      - label: HIPAA BAA
+        description: HIPAA-ready Business Associate Agreement
+        name: hipaa_baa
+        type: feature
+        geo: global
+        domains:
+          - https://api.turbopuffer.com
+        price: included
+        userMultiplied: false
+      - label: Support
+        description: 8x5 support hours plus private Slack channel
+        name: support
+        type: feature
+        geo: global
+        domains:
+          - https://api.turbopuffer.com
+        price: included
+        userMultiplied: false
+  - id: turbopuffer-enterprise
+    name: Enterprise
+    type: paid
+    description: >-
+      Enterprise tier with single-tenancy, bring-your-own-cloud (BYOC),
+      customer-managed encryption keys (CMEK), private networking, 24x7
+      support, and a 99.95% uptime SLA. Minimum monthly commitment >=$4,096
+      with a 35% usage premium above the minimum.
+    entries:
+      - label: Monthly Minimum
+        description: Minimum monthly spend for the Enterprise tier
+        name: monthly_minimum
+        type: subscription
+        metric: usd
+        limit: 4096
+        timeFrame: month
+        geo: global
+        domains:
+          - https://api.turbopuffer.com
+        unit: 1
+        price: '4096.00'
+        userMultiplied: false
+      - label: Usage Premium
+        description: Premium applied to usage above the monthly minimum
+        name: usage_premium
+        type: surcharge
+        metric: percent
+        limit: 35
+        geo: global
+        domains:
+          - https://api.turbopuffer.com
+        unit: 1
+        price: '0.35'
+        userMultiplied: false
+      - label: BYOC
+        description: Bring-your-own-cloud deployment
+        name: byoc
+        type: feature
+        geo: global
+        domains:
+          - https://api.turbopuffer.com
+        price: included
+        userMultiplied: false
+      - label: CMEK
+        description: Customer-managed encryption keys
+        name: cmek
+        type: feature
+        geo: global
+        domains:
+          - https://api.turbopuffer.com
+        price: included
+        userMultiplied: false
+      - label: Uptime SLA
+        description: 99.95% uptime SLA
+        name: uptime_sla
+        type: sla
+        metric: percent
+        limit: 99.95
+        geo: global
+        domains:
+          - https://api.turbopuffer.com
+        price: included
+        userMultiplied: false
+      - label: Support
+        description: 24x7 support
+        name: support
+        type: feature
+        geo: global
+        domains:
+          - https://api.turbopuffer.com
+        price: included
+        userMultiplied: false
 references:
-- name: turbopuffer API Documentation
-  url: https://raw.githubusercontent.com/api-evangelist/turbopuffer/refs/heads/main/apis.yml
+  - name: turbopuffer Pricing
+    url: https://turbopuffer.com/pricing
+  - name: turbopuffer API Documentation
+    url: https://turbopuffer.com/docs
+notes:
+  - Unused monthly commitments do not roll over.
+  - Per-unit prices for storage, writes, and queries are exposed via the
+    interactive pricing calculator on the pricing page rather than a static
+    list and should be reconciled to a current invoice.

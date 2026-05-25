@@ -4,54 +4,138 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: turbopuffer
 providerId: turbopuffer
 created: '2026-05-22'
-modified: '2026-05-22'
+modified: '2026-05-25'
 tags:
-- Vector Search
-- Full-Text Search
-- Hybrid Search
-- Serverless
-- Object Storage
-- RAG
-- Rate Limiting
-- Quotas
-- Throttling
-description: Scaffolded rate limit definitions for the turbopuffer API surface. Captures per-tier quotas, burst behavior,
-  response signaling, and recovery semantics. Defaults are scaffold values to be replaced with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
+  - Vector Search
+  - Full-Text Search
+  - Hybrid Search
+  - Serverless
+  - Object Storage
+  - RAG
+  - Rate Limiting
+  - Quotas
+  - Throttling
+description: >-
+  Published service limits for the turbopuffer API surface, sourced from
+  https://turbopuffer.com/docs/limits. Limits are enforced per namespace and
+  apply across all SDKs targeting the REST API at
+  https://{region}.turbopuffer.com.
 responseCodes:
   throttled: 429
   quotaExceeded: 429
   serviceUnavailable: 503
 limits:
-- tier: free
-  name: Free Tier Default
-  scope: api-key
-  metric: requests_per_minute
-  limit: 10
-  burst: 20
-  timeFrame: minute
-  applies:
-  - https://api.turbopuffer.com
-  description: Default per-token request rate for the free tier. Bursts above the limit return HTTP 429 with Retry-After.
-- tier: pro
-  name: Pro Tier Default
-  scope: api-key
-  metric: requests_per_minute
-  limit: 120
-  burst: 240
-  timeFrame: minute
-  applies:
-  - https://api.turbopuffer.com
-  description: Higher rate envelope for paid plans; reconcile against published commercial terms.
+  - tier: per-namespace-writes
+    name: Per-Namespace Write Throughput
+    scope: namespace
+    metric: writes_per_second
+    limit: 10000
+    timeFrame: second
+    applies:
+      - https://api.turbopuffer.com
+    description: >-
+      Up to 10,000 writes per second per namespace, with sustained bandwidth
+      up to 32 MB/s per namespace.
+  - tier: per-namespace-query-rate
+    name: Per-Namespace Query Rate
+    scope: namespace
+    metric: queries_per_second
+    limit: 1000
+    timeFrame: second
+    applies:
+      - https://api.turbopuffer.com
+    description: >-
+      1,000+ queries per second per namespace. HTTP 429 is returned if a
+      caller queries or writes too quickly.
+  - tier: per-namespace-query-concurrency
+    name: Per-Namespace Query Concurrency
+    scope: namespace
+    metric: concurrent_queries
+    limit: 16
+    applies:
+      - https://api.turbopuffer.com
+    description: >-
+      Up to 16 concurrent queries per namespace, supporting hundreds of
+      queries per second in practice.
+quotas:
+  - name: Documents Per Namespace
+    scope: namespace
+    metric: documents
+    limit: 500000000
+    description: 500M documents per namespace, up to 2 TB.
+  - name: Namespace Storage Cap
+    scope: namespace
+    metric: bytes
+    limit: 2199023255552
+    description: 2 TB storage cap per namespace.
+  - name: Document Size
+    scope: request
+    metric: bytes
+    limit: 67108864
+    description: 64 MiB maximum document size.
+  - name: Upsert Batch Size
+    scope: request
+    metric: bytes
+    limit: 536870912
+    description: 512 MB maximum upsert batch size.
+  - name: Filterable Value Size
+    scope: request
+    metric: bytes
+    limit: 4096
+    description: 4 KiB maximum filterable attribute value size.
+  - name: Attribute Value Size
+    scope: request
+    metric: bytes
+    limit: 8388608
+    description: 8 MiB maximum non-filterable attribute value size.
+  - name: Multi-Query Batch Size
+    scope: request
+    metric: queries
+    limit: 16
+    description: Up to 16 queries per multi-query request.
+  - name: Aggregation Groups Per Query
+    scope: request
+    metric: groups
+    limit: 10000
+    description: Up to 10,000 aggregation groups per query.
+  - name: Result Rows Per Query
+    scope: request
+    metric: rows
+    limit: 10000
+    description: Up to 10,000 result rows per query.
+  - name: Dense Vector Dimensions
+    scope: document
+    metric: dimensions
+    limit: 10752
+    description: Up to 10,752 dimensions per dense vector.
+  - name: Sparse Vector Dimensions
+    scope: document
+    metric: dimensions
+    limit: 30522
+    description: Up to 1,024 non-zero dimensions per sparse vector; 30,522 total.
+  - name: Vector Columns Per Namespace
+    scope: namespace
+    metric: columns
+    limit: 2
+    description: At most 2 vector columns per namespace.
+  - name: Pinned Namespaces
+    scope: account
+    metric: namespaces
+    limit: 256
+    description: Up to 256 pinned namespaces per account (higher available on request).
 recoveryStrategies:
-- name: Exponential Backoff
-  description: Wait Retry-After seconds (or back off exponentially up to 60s) before retrying.
-- name: Queue and Retry
-  description: Submit bulk work in batches under the burst envelope.
+  - name: Exponential Backoff
+    description: Back off on HTTP 429 / 503 with jittered exponential delay up to ~60s before retrying.
+  - name: Batch Writes
+    description: Group writes into larger upsert batches to stay within the per-namespace 10k writes/s envelope.
+  - name: Pin Hot Namespaces
+    description: Pin frequently-queried namespaces for predictable cost and latency under high QPS.
+references:
+  - name: turbopuffer Limits
+    url: https://turbopuffer.com/docs/limits
+  - name: turbopuffer Auth
+    url: https://turbopuffer.com/docs/auth
 notes:
-- Replace scaffold values with the provider's published rate limit policy.
+  - Limits documented on the public limits page are stated as soft caps —
+    the provider notes most can be raised by an order of magnitude on
+    request.
