@@ -16,7 +16,7 @@ description: >-
   specification via Stainless. Pricing is tiered (Launch, Scale, Enterprise)
   with usage-based metering on storage, writes, and queries on top of monthly
   minimums.
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Vector Search
   - Full-Text Search
