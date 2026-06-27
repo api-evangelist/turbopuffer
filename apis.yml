@@ -54,7 +54,7 @@ apis:
         url: https://turbopuffer.com/docs
       - type: Authentication
         url: https://turbopuffer.com/docs/auth
-      - type: Quickstart
+      - type: GettingStarted
         url: https://turbopuffer.com/docs/quickstart
       - type: OpenAPI
         url: https://raw.githubusercontent.com/api-evangelist/turbopuffer/main/openapi/turbopuffer-openapi.yml
@@ -230,7 +230,7 @@ common:
     url: https://turbopuffer.com/docs/limits
   - type: Blog
     url: https://turbopuffer.com/blog
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://turbopuffer.com/llms.txt
   - type: TermsOfService
     url: https://turbopuffer.com/terms-of-service
