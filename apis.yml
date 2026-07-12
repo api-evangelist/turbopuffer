@@ -212,6 +212,10 @@ apis:
       - type: Repository
         url: https://github.com/turbopuffer/tpuf-benchmark
 common:
+  - type: DomainSecurity
+    url: security/turbopuffer-domain-security.yml
+  - type: Authentication
+    url: authentication/turbopuffer-authentication.yml
   - type: Website
     url: https://turbopuffer.com/
   - type: Documentation
