@@ -212,6 +212,8 @@ apis:
       - type: Repository
         url: https://github.com/turbopuffer/tpuf-benchmark
 common:
+  - type: AgenticAccess
+    url: agentic-access/turbopuffer-agentic-access.yml
   - type: DomainSecurity
     url: security/turbopuffer-domain-security.yml
   - type: Authentication
