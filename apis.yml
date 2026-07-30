@@ -16,7 +16,20 @@ description: >-
   specification via Stainless. Pricing is tiered (Launch, Scale, Enterprise)
   with usage-based metering on storage, writes, and queries on top of monthly
   minimums.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/turbopuffer.png
 tags:
   - Vector Search
   - Full-Text Search
@@ -32,185 +45,171 @@ created: '2026-05-23'
 modified: '2026-05-25'
 specificationVersion: '0.19'
 apis:
-  - aid: turbopuffer:rest-api
-    name: turbopuffer REST API
-    description: >-
-      Single REST API for all turbopuffer operations — namespace metadata,
-      write (upsert / patch / delete), vector ANN query, full-text BM25 query,
-      hybrid query, multi-query, explain_query, branch_from, copy_from, and
-      cache warming — with bearer-token authentication. The base host is
-      region-templated as https://{region}.turbopuffer.com (e.g.,
-      gcp-us-east4.turbopuffer.com or aws-us-east-1.turbopuffer.com) to
-      minimize egress and latency.
-    humanURL: https://turbopuffer.com/docs
-    baseURL: https://api.turbopuffer.com
-    tags:
-      - REST
-      - Vector Search
-      - Full-Text Search
-      - Hybrid Search
-    properties:
-      - type: Documentation
-        url: https://turbopuffer.com/docs
-      - type: Authentication
-        url: https://turbopuffer.com/docs/auth
-      - type: GettingStarted
-        url: https://turbopuffer.com/docs/quickstart
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/turbopuffer/main/openapi/turbopuffer-openapi.yml
-      - type: OpenAPI-Source
-        url: https://github.com/turbopuffer/turbopuffer-openapi
-  - aid: turbopuffer:write
-    name: turbopuffer Write API
-    description: >-
-      Endpoints for upserting, patching, and deleting documents within a
-      namespace. Writes are batched into a per-namespace write-ahead log and
-      become queryable once committed to object storage. Supports both
-      row-oriented and column-oriented batch formats.
-    humanURL: https://turbopuffer.com/docs/write
-    baseURL: https://api.turbopuffer.com
-    tags:
-      - Write
-      - Upsert
-      - Namespaces
-    properties:
-      - type: Documentation
-        url: https://turbopuffer.com/docs/write
-  - aid: turbopuffer:query
-    name: turbopuffer Query API
-    description: >-
-      Unified query endpoint that runs vector ANN, full-text BM25, and hybrid
-      queries against a namespace, with attribute filters, top-k, aggregation
-      groups, and ranking controls. Supports multi-query (up to 16 per
-      request) and explain_query for query planning.
-    humanURL: https://turbopuffer.com/docs/query
-    baseURL: https://api.turbopuffer.com
-    tags:
-      - Query
-      - Vector
-      - BM25
-      - Hybrid
-      - ANN
-    properties:
-      - type: Documentation
-        url: https://turbopuffer.com/docs/query
-  - aid: turbopuffer:namespaces
-    name: turbopuffer Namespaces API
-    description: >-
-      Namespace lifecycle and metadata endpoints — list namespaces, read
-      schema / dimensions / row count, warm the cache, export contents,
-      branch_from (copy-on-write clones in constant time), copy_from, and
-      delete a namespace.
-    humanURL: https://turbopuffer.com/docs/namespaces
-    baseURL: https://api.turbopuffer.com
-    tags:
-      - Namespaces
-      - Metadata
-      - Admin
-      - Branching
-    properties:
-      - type: Documentation
-        url: https://turbopuffer.com/docs/namespaces
-  - aid: turbopuffer:python-sdk
-    name: turbopuffer Python SDK
-    description: >-
-      Official Python client library for the turbopuffer REST API,
-      Stainless-generated from the public OpenAPI spec.
-    humanURL: https://github.com/turbopuffer/turbopuffer-python
-    baseURL: https://github.com/turbopuffer/turbopuffer-python
-    tags:
-      - SDK
-      - Python
-    properties:
-      - type: Repository
-        url: https://github.com/turbopuffer/turbopuffer-python
-      - type: Package
-        url: https://pypi.org/project/turbopuffer/
-  - aid: turbopuffer:typescript-sdk
-    name: turbopuffer TypeScript SDK
-    description: >-
-      Official TypeScript / JavaScript client library for the turbopuffer REST
-      API, Stainless-generated and published to npm.
-    humanURL: https://github.com/turbopuffer/turbopuffer-typescript
-    baseURL: https://github.com/turbopuffer/turbopuffer-typescript
-    tags:
-      - SDK
-      - TypeScript
-      - JavaScript
-    properties:
-      - type: Repository
-        url: https://github.com/turbopuffer/turbopuffer-typescript
-      - type: Package
-        url: https://www.npmjs.com/package/@turbopuffer/turbopuffer
-  - aid: turbopuffer:go-sdk
-    name: turbopuffer Go SDK
-    description: >-
-      Official Go client library for the turbopuffer REST API,
-      Stainless-generated from the public OpenAPI spec.
-    humanURL: https://github.com/turbopuffer/turbopuffer-go
-    baseURL: https://github.com/turbopuffer/turbopuffer-go
-    tags:
-      - SDK
-      - Go
-    properties:
-      - type: Repository
-        url: https://github.com/turbopuffer/turbopuffer-go
-  - aid: turbopuffer:java-sdk
-    name: turbopuffer Java SDK
-    description: >-
-      Official Java / Kotlin client library for the turbopuffer REST API,
-      Stainless-generated from the public OpenAPI spec.
-    humanURL: https://github.com/turbopuffer/turbopuffer-java
-    baseURL: https://github.com/turbopuffer/turbopuffer-java
-    tags:
-      - SDK
-      - Java
-      - Kotlin
-    properties:
-      - type: Repository
-        url: https://github.com/turbopuffer/turbopuffer-java
-  - aid: turbopuffer:ruby-sdk
-    name: turbopuffer Ruby SDK
-    description: >-
-      Official Ruby client library for the turbopuffer REST API,
-      Stainless-generated from the public OpenAPI spec.
-    humanURL: https://github.com/turbopuffer/turbopuffer-ruby
-    baseURL: https://github.com/turbopuffer/turbopuffer-ruby
-    tags:
-      - SDK
-      - Ruby
-    properties:
-      - type: Repository
-        url: https://github.com/turbopuffer/turbopuffer-ruby
-  - aid: turbopuffer:csharp-sdk
-    name: turbopuffer C# SDK
-    description: >-
-      Official C# / .NET client library for the turbopuffer REST API,
-      Stainless-generated from the public OpenAPI spec.
-    humanURL: https://github.com/turbopuffer/turbopuffer-csharp
-    baseURL: https://github.com/turbopuffer/turbopuffer-csharp
-    tags:
-      - SDK
-      - CSharp
-      - DotNet
-    properties:
-      - type: Repository
-        url: https://github.com/turbopuffer/turbopuffer-csharp
-  - aid: turbopuffer:benchmark
-    name: tpuf-benchmark
-    description: >-
-      Open-source general-purpose benchmarking tool for turbopuffer
-      deployments. Useful for validating recall, latency, and throughput on a
-      given workload.
-    humanURL: https://github.com/turbopuffer/tpuf-benchmark
-    baseURL: https://github.com/turbopuffer/tpuf-benchmark
-    tags:
-      - Tooling
-      - Benchmark
-      - Go
-    properties:
-      - type: Repository
-        url: https://github.com/turbopuffer/tpuf-benchmark
+- aid: turbopuffer:write
+  name: turbopuffer Write API
+  description: >-
+    Endpoints for upserting, patching, and deleting documents within a namespace. Writes are batched into
+    a per-namespace write-ahead log and become queryable once committed to object storage. Supports both
+    row-oriented and column-oriented batch formats.
+  humanURL: https://turbopuffer.com/docs/write
+  baseURL: https://api.turbopuffer.com
+  tags:
+  - Write
+  - Upsert
+  - Namespaces
+  properties:
+  - type: Documentation
+    url: https://turbopuffer.com/docs/write
+- aid: turbopuffer:query
+  name: turbopuffer Query API
+  description: >-
+    Unified query endpoint that runs vector ANN, full-text BM25, and hybrid queries against a namespace,
+    with attribute filters, top-k, aggregation groups, and ranking controls. Supports multi-query (up
+    to 16 per request) and explain_query for query planning.
+  humanURL: https://turbopuffer.com/docs/query
+  baseURL: https://api.turbopuffer.com
+  tags:
+  - Query
+  - Vector
+  - BM25
+  - Hybrid
+  - ANN
+  properties:
+  - type: Documentation
+    url: https://turbopuffer.com/docs/query
+- aid: turbopuffer:namespaces
+  name: turbopuffer Namespaces API
+  description: >-
+    Namespace lifecycle and metadata endpoints — list namespaces, read schema / dimensions / row count,
+    warm the cache, export contents, branch_from (copy-on-write clones in constant time), copy_from, and
+    delete a namespace.
+  humanURL: https://turbopuffer.com/docs/namespaces
+  baseURL: https://api.turbopuffer.com
+  tags:
+  - Namespaces
+  - Metadata
+  - Admin
+  - Branching
+  properties:
+  - type: Documentation
+    url: https://turbopuffer.com/docs/namespaces
+- aid: turbopuffer:python-sdk
+  name: turbopuffer Python SDK
+  description: >-
+    Official Python client library for the turbopuffer REST API, Stainless-generated from the public OpenAPI
+    spec.
+  humanURL: https://github.com/turbopuffer/turbopuffer-python
+  baseURL: https://github.com/turbopuffer/turbopuffer-python
+  tags:
+  - SDK
+  - Python
+  properties:
+  - type: Repository
+    url: https://github.com/turbopuffer/turbopuffer-python
+  - type: Package
+    url: https://pypi.org/project/turbopuffer/
+- aid: turbopuffer:typescript-sdk
+  name: turbopuffer TypeScript SDK
+  description: >-
+    Official TypeScript / JavaScript client library for the turbopuffer REST API, Stainless-generated
+    and published to npm.
+  humanURL: https://github.com/turbopuffer/turbopuffer-typescript
+  baseURL: https://github.com/turbopuffer/turbopuffer-typescript
+  tags:
+  - SDK
+  - TypeScript
+  - JavaScript
+  properties:
+  - type: Repository
+    url: https://github.com/turbopuffer/turbopuffer-typescript
+  - type: Package
+    url: https://www.npmjs.com/package/@turbopuffer/turbopuffer
+- aid: turbopuffer:go-sdk
+  name: turbopuffer Go SDK
+  description: >-
+    Official Go client library for the turbopuffer REST API, Stainless-generated from the public OpenAPI
+    spec.
+  humanURL: https://github.com/turbopuffer/turbopuffer-go
+  baseURL: https://github.com/turbopuffer/turbopuffer-go
+  tags:
+  - SDK
+  - Go
+  properties:
+  - type: Repository
+    url: https://github.com/turbopuffer/turbopuffer-go
+- aid: turbopuffer:java-sdk
+  name: turbopuffer Java SDK
+  description: >-
+    Official Java / Kotlin client library for the turbopuffer REST API, Stainless-generated from the public
+    OpenAPI spec.
+  humanURL: https://github.com/turbopuffer/turbopuffer-java
+  baseURL: https://github.com/turbopuffer/turbopuffer-java
+  tags:
+  - SDK
+  - Java
+  - Kotlin
+  properties:
+  - type: Repository
+    url: https://github.com/turbopuffer/turbopuffer-java
+- aid: turbopuffer:ruby-sdk
+  name: turbopuffer Ruby SDK
+  description: >-
+    Official Ruby client library for the turbopuffer REST API, Stainless-generated from the public OpenAPI
+    spec.
+  humanURL: https://github.com/turbopuffer/turbopuffer-ruby
+  baseURL: https://github.com/turbopuffer/turbopuffer-ruby
+  tags:
+  - SDK
+  - Ruby
+  properties:
+  - type: Repository
+    url: https://github.com/turbopuffer/turbopuffer-ruby
+- aid: turbopuffer:csharp-sdk
+  name: turbopuffer C# SDK
+  description: >-
+    Official C# / .NET client library for the turbopuffer REST API, Stainless-generated from the public
+    OpenAPI spec.
+  humanURL: https://github.com/turbopuffer/turbopuffer-csharp
+  baseURL: https://github.com/turbopuffer/turbopuffer-csharp
+  tags:
+  - SDK
+  - CSharp
+  - DotNet
+  properties:
+  - type: Repository
+    url: https://github.com/turbopuffer/turbopuffer-csharp
+- aid: turbopuffer:benchmark
+  name: tpuf-benchmark
+  description: >-
+    Open-source general-purpose benchmarking tool for turbopuffer deployments. Useful for validating recall,
+    latency, and throughput on a given workload.
+  humanURL: https://github.com/turbopuffer/tpuf-benchmark
+  baseURL: https://github.com/turbopuffer/tpuf-benchmark
+  tags:
+  - Tooling
+  - Benchmark
+  - Go
+  properties:
+  - type: Repository
+    url: https://github.com/turbopuffer/tpuf-benchmark
+- aid: turbopuffer:turbopuffer-namespaces-api
+  name: turbopuffer Namespaces API
+  description: The Namespaces API from turbopuffer — 12 operation(s) for namespaces.
+  humanURL: https://turbopuffer.com/docs
+  baseURL: https://api.turbopuffer.com
+  tags:
+  - Namespaces
+  properties:
+  - type: OpenAPI
+    url: openapi/turbopuffer-namespaces-api-openapi.yml
+  - type: Documentation
+    url: https://turbopuffer.com/docs
+  - type: Authentication
+    url: https://turbopuffer.com/docs/auth
+  - type: GettingStarted
+    url: https://turbopuffer.com/docs/quickstart
+  - type: OpenAPI-Source
+    url: https://github.com/turbopuffer/turbopuffer-openapi
 common:
   - type: AgenticAccess
     url: agentic-access/turbopuffer-agentic-access.yml
