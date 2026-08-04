@@ -1,0 +1,14 @@
+{
+  "provider": "turbopuffer",
+  "sources": [
+    "turbopuffer-namespaces-api-openapi.yml"
+  ],
+  "outputs": [
+    "turbopuffer-namespaces-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
