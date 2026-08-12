@@ -211,6 +211,9 @@ apis:
   - type: OpenAPI-Source
     url: https://github.com/turbopuffer/turbopuffer-openapi
 common:
+  - type: License
+    name: MIT
+    url: https://github.com/turbopuffer/turbopuffer-python/blob/main/LICENSE
   - type: AgenticAccess
     url: agentic-access/turbopuffer-agentic-access.yml
   - type: DomainSecurity
