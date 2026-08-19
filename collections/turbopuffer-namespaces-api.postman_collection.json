@@ -1,0 +1,2711 @@
+{
+  "item": [
+    {
+      "id": "c7397a84-a97e-49aa-a544-46523505ae68",
+      "name": "Namespaces",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8a0685c9-8898-4232-9abe-f3d65fc9ddb8",
+          "name": "List namespaces.",
+          "request": {
+            "name": "List namespaces.",
+            "description": {
+              "content": "List namespaces.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "namespaces"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "Retrieve the next page of results."
+                },
+                {
+                  "disabled": false,
+                  "key": "prefix",
+                  "value": "<string>",
+                  "description": "Retrieve only the namespaces that match the prefix."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>",
+                  "description": "Limit the number of results per page."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The turbopuffer region to use.",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "90f0db14-fc36-49e7-8f82-bf3d3aacb4cb",
+              "name": "A JSON array of namespace metadata.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "namespaces"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prefix",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The turbopuffer region to use.",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"namespaces\": [\n    {\n      \"id\": \"string\"\n    },\n    {\n      \"id\": \"string\"\n    }\n  ],\n  \"next_cursor\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d07a5b3e-bedb-4ee2-81b9-4ebc9505ea05",
+              "name": "An error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "namespaces"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prefix",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The turbopuffer region to use.",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": {},\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "daf8a057-408f-46ed-b3b1-7dd429760c93",
+          "name": "Get namespace schema.",
+          "request": {
+            "name": "Get namespace schema.",
+            "description": {
+              "content": "Get namespace schema.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "namespaces",
+                ":namespace",
+                "schema"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) The name of the namespace."
+                },
+                {
+                  "description": "The turbopuffer region to use.",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ce2cb8b5-e80e-4e5a-a73f-316a7a6a28cd",
+              "name": "The schema of the namespace.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "namespaces",
+                    ":namespace",
+                    "schema"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The name of the namespace."
+                    },
+                    {
+                      "description": "The turbopuffer region to use.",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": {\n    \"type\": \"string\",\n    \"filterable\": true,\n    \"regex\": true,\n    \"glob\": true,\n    \"fuzzy\": false,\n    \"full_text_search\": false,\n    \"ann\": true,\n    \"sparse_knn\": {\n      \"distance_metric\": {}\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "73a469d4-a0dd-457e-b010-bfc18a0a2654",
+              "name": "An error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "namespaces",
+                    ":namespace",
+                    "schema"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The name of the namespace."
+                    },
+                    {
+                      "description": "The turbopuffer region to use.",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": {},\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "49933d07-6d72-4cf1-9fac-f9e7afbe09d3",
+          "name": "Update namespace schema.",
+          "request": {
+            "name": "Update namespace schema.",
+            "description": {
+              "content": "Update namespace schema.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "namespaces",
+                ":namespace",
+                "schema"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) The name of the namespace."
+                },
+                {
+                  "description": "The turbopuffer region to use.",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_0\": \"<string>\",\n  \"key_1\": \"<string>\",\n  \"key_2\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a1959c75-f0c8-40a0-a02a-a001be960965",
+              "name": "The schema of the namespace.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "namespaces",
+                    ":namespace",
+                    "schema"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The name of the namespace."
+                    },
+                    {
+                      "description": "The turbopuffer region to use.",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": \"string\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": {\n    \"type\": \"string\",\n    \"filterable\": false,\n    \"regex\": true,\n    \"glob\": true,\n    \"fuzzy\": true,\n    \"full_text_search\": false,\n    \"ann\": true,\n    \"sparse_knn\": {\n      \"distance_metric\": {}\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b38110c6-a554-4ef0-8333-a81f818fa33f",
+              "name": "An error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "namespaces",
+                    ":namespace",
+                    "schema"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The name of the namespace."
+                    },
+                    {
+                      "description": "The turbopuffer region to use.",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": \"string\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": {},\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "262e4969-395c-4cea-899f-c0f26d0a9897",
+          "name": "Get metadata about a namespace.",
+          "request": {
+            "name": "Get metadata about a namespace.",
+            "description": {
+              "content": "Get metadata about a namespace.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "namespaces",
+                ":namespace",
+                "metadata"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) The name of the namespace."
+                },
+                {
+                  "description": "The turbopuffer region to use.",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f2ce09f6-1676-43e2-a753-3dc54fe8f224",
+              "name": "The metadata of the namespace.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "namespaces",
+                    ":namespace",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The name of the namespace."
+                    },
+                    {
+                      "description": "The turbopuffer region to use.",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"schema\": {\n    \"key_0\": {\n      \"type\": \"string\",\n      \"filterable\": false,\n      \"regex\": false,\n      \"glob\": false,\n      \"fuzzy\": true,\n      \"full_text_search\": true,\n      \"ann\": true,\n      \"sparse_knn\": {\n        \"distance_metric\": {}\n      }\n    },\n    \"key_1\": {\n      \"type\": \"string\",\n      \"filterable\": true,\n      \"regex\": false,\n      \"glob\": true,\n      \"fuzzy\": true,\n      \"full_text_search\": false,\n      \"ann\": true,\n      \"sparse_knn\": {\n        \"distance_metric\": {}\n      }\n    }\n  },\n  \"approx_logical_bytes\": 5713,\n  \"approx_row_count\": 296,\n  \"created_at\": \"1994-08-09T05:35:22.217Z\",\n  \"updated_at\": \"2002-09-06T09:15:14.636Z\",\n  \"encryption\": {\n    \"mode\": {},\n    \"key_name\": \"string\"\n  },\n  \"index\": {\n    \"status\": {}\n  },\n  \"pinning\": {\n    \"replicas\": 3223,\n    \"status\": {\n      \"updated_at\": \"1948-06-09T11:22:47.579Z\",\n      \"ready_replicas\": 1377,\n      \"utilization\": 1623.521998872245\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "75eace55-ee20-438a-b8f5-f924c0ddbc47",
+              "name": "An error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "namespaces",
+                    ":namespace",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The name of the namespace."
+                    },
+                    {
+                      "description": "The turbopuffer region to use.",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": {},\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1efde484-2bd4-4bf5-ac40-98b44d106dd8",
+          "name": "Update metadata configuration for a namespace.",
+          "request": {
+            "name": "Update metadata configuration for a namespace.",
+            "description": {
+              "content": "Update metadata configuration for a namespace.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "namespaces",
+                ":namespace",
+                "metadata"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) The name of the namespace."
+                },
+                {
+                  "description": "The turbopuffer region to use.",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pinning\": \"<null>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fb9bb77f-0e4d-4eef-b8d7-87db814da745",
+              "name": "The updated metadata of the namespace.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "namespaces",
+                    ":namespace",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The name of the namespace."
+                    },
+                    {
+                      "description": "The turbopuffer region to use.",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pinning\": \"<null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"schema\": {\n    \"key_0\": {\n      \"type\": \"string\",\n      \"filterable\": false,\n      \"regex\": false,\n      \"glob\": false,\n      \"fuzzy\": true,\n      \"full_text_search\": true,\n      \"ann\": true,\n      \"sparse_knn\": {\n        \"distance_metric\": {}\n      }\n    },\n    \"key_1\": {\n      \"type\": \"string\",\n      \"filterable\": true,\n      \"regex\": false,\n      \"glob\": true,\n      \"fuzzy\": true,\n      \"full_text_search\": false,\n      \"ann\": true,\n      \"sparse_knn\": {\n        \"distance_metric\": {}\n      }\n    }\n  },\n  \"approx_logical_bytes\": 5713,\n  \"approx_row_count\": 296,\n  \"created_at\": \"1994-08-09T05:35:22.217Z\",\n  \"updated_at\": \"2002-09-06T09:15:14.636Z\",\n  \"encryption\": {\n    \"mode\": {},\n    \"key_name\": \"string\"\n  },\n  \"index\": {\n    \"status\": {}\n  },\n  \"pinning\": {\n    \"replicas\": 3223,\n    \"status\": {\n      \"updated_at\": \"1948-06-09T11:22:47.579Z\",\n      \"ready_replicas\": 1377,\n      \"utilization\": 1623.521998872245\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e9bbc0cd-cdac-40a2-9cc5-9fa7505b9ceb",
+              "name": "An error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "namespaces",
+                    ":namespace",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The name of the namespace."
+                    },
+                    {
+                      "description": "The turbopuffer region to use.",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pinning\": \"<null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": {},\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a18b6b85-6ba4-4b27-b3f1-451668d70ba1",
+          "name": "Signal turbopuffer to prepare for low-latency requests.",
+          "request": {
+            "name": "Signal turbopuffer to prepare for low-latency requests.",
+            "description": {
+              "content": "Signal turbopuffer to prepare for low-latency requests.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "namespaces",
+                ":namespace",
+                "hint_cache_warm"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) The name of the namespace."
+                },
+                {
+                  "description": "The turbopuffer region to use.",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "207e16f2-27e3-46c7-b4ae-44688ff7c22a",
+              "name": "The status of the cache warm request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "namespaces",
+                    ":namespace",
+                    "hint_cache_warm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The name of the namespace."
+                    },
+                    {
+                      "description": "The turbopuffer region to use.",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": {},\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "171baeef-ac0d-49ad-83f0-9b8cc50deb5e",
+              "name": "An error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "namespaces",
+                    ":namespace",
+                    "hint_cache_warm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The name of the namespace."
+                    },
+                    {
+                      "description": "The turbopuffer region to use.",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": {},\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "35f11990-262b-46dd-b558-ad2996a29edd",
+          "name": "Evaluate recall.",
+          "request": {
+            "name": "Evaluate recall.",
+            "description": {
+              "content": "Evaluate recall.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "namespaces",
+                ":namespace",
+                "_debug",
+                "recall"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) The name of the namespace."
+                },
+                {
+                  "description": "The turbopuffer region to use.",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"num\": \"<integer>\",\n  \"top_k\": \"<integer>\",\n  \"filters\": {},\n  \"include_ground_truth\": false,\n  \"rank_by\": {}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5fae8a81-fa9e-4e8f-9ffe-f593b0bfd44a",
+              "name": "The status of the cache warm request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "namespaces",
+                    ":namespace",
+                    "_debug",
+                    "recall"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The name of the namespace."
+                    },
+                    {
+                      "description": "The turbopuffer region to use.",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"num\": \"<integer>\",\n  \"top_k\": \"<integer>\",\n  \"filters\": {},\n  \"include_ground_truth\": false,\n  \"rank_by\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"avg_recall\": 419.536102639001,\n  \"avg_exhaustive_count\": 2547.3318236081955,\n  \"avg_ann_count\": 7843.414538663621,\n  \"ground_truth\": [\n    {\n      \"query_vector\": [\n        761.8841310339452,\n        5375.468970339357\n      ],\n      \"nearest_neighbors\": [\n        {\n          \"id\": \"ad9d3d64-2ebc-c5f4-e30e-d9f74081d50d\",\n          \"vector\": [\n            2134.1026739536674,\n            3401.7054889254996\n          ]\n        },\n        {\n          \"id\": \"d715b82a-769b-0f6e-081a-b9d017086998\",\n          \"vector\": [\n            4184.11046248166,\n            3312.1334527964787\n          ]\n        }\n      ]\n    },\n    {\n      \"query_vector\": [\n        9299.937548301506,\n        1200.7991568776988\n      ],\n      \"nearest_neighbors\": [\n        {\n          \"id\": \"637c7e67-b754-beed-c85e-8cd64b2ecde2\",\n          \"vector\": [\n            6933.076378023599,\n            4427.621977681963\n          ]\n        },\n        {\n          \"id\": \"cbd7a64d-59fa-d028-250a-a36210ad7c39\",\n          \"vector\": [\n            7105.073971853323,\n            6939.9527583861545\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "613e5590-0d83-47c0-a916-0de6c0bdb3e6",
+              "name": "An error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "namespaces",
+                    ":namespace",
+                    "_debug",
+                    "recall"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The name of the namespace."
+                    },
+                    {
+                      "description": "The turbopuffer region to use.",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"num\": \"<integer>\",\n  \"top_k\": \"<integer>\",\n  \"filters\": {},\n  \"include_ground_truth\": false,\n  \"rank_by\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": {},\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "83c3f41e-d9c0-46f8-80ed-9a792b3442d2",
+          "name": "Create, update, or delete documents.",
+          "request": {
+            "name": "Create, update, or delete documents.",
+            "description": {
+              "content": "Create, update, or delete documents.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "namespaces",
+                ":namespace"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) The name of the namespace."
+                },
+                {
+                  "description": "The turbopuffer region to use.",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"upsert_columns\": {\n    \"id\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ],\n    \"vector\": [\n      [\n        \"<number>\",\n        \"<number>\"\n      ],\n      [\n        \"<number>\",\n        \"<number>\"\n      ]\n    ]\n  },\n  \"upsert_rows\": [\n    {\n      \"id\": \"<uuid>\",\n      \"vector\": [\n        \"<number>\",\n        \"<number>\"\n      ]\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"vector\": [\n        \"<number>\",\n        \"<number>\"\n      ]\n    }\n  ],\n  \"patch_columns\": {\n    \"id\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ],\n    \"vector\": [\n      [\n        \"<number>\",\n        \"<number>\"\n      ],\n      [\n        \"<number>\",\n        \"<number>\"\n      ]\n    ]\n  },\n  \"patch_rows\": [\n    {\n      \"id\": \"<uuid>\",\n      \"vector\": [\n        \"<number>\",\n        \"<number>\"\n      ]\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"vector\": [\n        \"<number>\",\n        \"<number>\"\n      ]\n    }\n  ],\n  \"deletes\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"upsert_condition\": {},\n  \"patch_condition\": {},\n  \"delete_condition\": {},\n  \"distance_metric\": {},\n  \"schema\": {\n    \"key_0\": \"<string>\"\n  },\n  \"branch_from_namespace\": \"<string>\",\n  \"copy_from_namespace\": \"<string>\",\n  \"delete_by_filter\": {},\n  \"delete_by_filter_allow_partial\": \"<boolean>\",\n  \"patch_by_filter\": {\n    \"patch\": {\n      \"key_0\": 6232\n    },\n    \"filters\": {}\n  },\n  \"patch_by_filter_allow_partial\": \"<boolean>\",\n  \"return_affected_ids\": false,\n  \"encryption\": {\n    \"mode\": {},\n    \"key_name\": \"<string>\"\n  },\n  \"disable_backpressure\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "88316ea6-1628-4913-b1b4-9b4830818ac6",
+              "name": "The status of the request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "namespaces",
+                    ":namespace"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The name of the namespace."
+                    },
+                    {
+                      "description": "The turbopuffer region to use.",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"upsert_columns\": {\n    \"id\": [\n      \"e4d8efed-2f7b-82d6-5ae1-c39a6a8b1482\",\n      \"bb51f2c6-a405-dd2d-9e4d-6fe85273a7f8\"\n    ],\n    \"vector\": [\n      [\n        6535.826051170545,\n        2423.9596442944735\n      ],\n      [\n        1682.0870428752821,\n        2109.8469321907396\n      ]\n    ]\n  },\n  \"upsert_rows\": [\n    {\n      \"id\": \"52e85eae-b63d-7417-f08b-03ea81fe529c\",\n      \"vector\": [\n        6053.801745317444,\n        3758.215854360513\n      ]\n    },\n    {\n      \"id\": \"9187d82a-a836-ae23-e652-1c3a5242c5fb\",\n      \"vector\": [\n        6933.766870222899,\n        7827.455556492268\n      ]\n    }\n  ],\n  \"patch_columns\": {\n    \"id\": [\n      \"761f7890-7a67-4fa8-c6de-2e20737711e9\",\n      \"f56a3108-81f5-feef-f724-d129fde69756\"\n    ],\n    \"vector\": [\n      [\n        7705.02426013153,\n        2018.710691718273\n      ],\n      [\n        8450.548054154622,\n        8824.451971070273\n      ]\n    ]\n  },\n  \"patch_rows\": [\n    {\n      \"id\": \"f874582b-4d59-3b92-3205-659e4a97c7dc\",\n      \"vector\": [\n        2433.826945050157,\n        352.56615660789527\n      ]\n    },\n    {\n      \"id\": \"98d14c97-74bf-d400-9d6b-e3df64b402cc\",\n      \"vector\": [\n        4237.807476165926,\n        8465.043035697323\n      ]\n    }\n  ],\n  \"deletes\": [\n    \"e715648a-de29-a838-447e-3b851e13bc23\",\n    \"ad4fb497-b0a5-1549-a581-aaeb40953ec5\"\n  ],\n  \"upsert_condition\": {},\n  \"patch_condition\": {},\n  \"delete_condition\": {},\n  \"distance_metric\": {},\n  \"schema\": {\n    \"key_0\": \"string\"\n  },\n  \"branch_from_namespace\": \"string\",\n  \"copy_from_namespace\": \"string\",\n  \"delete_by_filter\": {},\n  \"delete_by_filter_allow_partial\": \"<boolean>\",\n  \"patch_by_filter\": {\n    \"patch\": {\n      \"key_0\": 4696,\n      \"key_1\": \"string\",\n      \"key_2\": 3517,\n      \"key_3\": true,\n      \"key_4\": 6031\n    },\n    \"filters\": {}\n  },\n  \"patch_by_filter_allow_partial\": \"<boolean>\",\n  \"return_affected_ids\": false,\n  \"encryption\": {\n    \"mode\": {},\n    \"key_name\": \"string\"\n  },\n  \"disable_backpressure\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": {},\n  \"message\": \"string\",\n  \"rows_affected\": 4587,\n  \"billing\": {\n    \"billable_logical_bytes_written\": 5843,\n    \"query\": {\n      \"billable_logical_bytes_queried\": 3156,\n      \"billable_logical_bytes_returned\": 2632\n    }\n  },\n  \"rows_upserted\": 8569,\n  \"rows_patched\": 5654,\n  \"rows_deleted\": 5863,\n  \"rows_remaining\": false,\n  \"upserted_ids\": [\n    \"9fa48f79-ea2b-4834-33ab-16277737b8c6\",\n    \"fba8f78d-c737-d5d7-b247-817f49f28819\"\n  ],\n  \"patched_ids\": [\n    \"209147dc-1133-aa16-9618-8a802ff464c9\",\n    \"2bd57ca8-ba5d-ec37-40bd-a5f680be1ef0\"\n  ],\n  \"deleted_ids\": [\n    \"20ef3fec-29dd-c572-f2c5-a91e29ea079e\",\n    \"5f88c132-f2ac-5664-725d-f02ef0e1ffbe\"\n  ],\n  \"performance\": {\n    \"server_total_ms\": 2146\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d7d8040e-3c19-4a6f-9908-bf508cc36813",
+              "name": "An error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "namespaces",
+                    ":namespace"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The name of the namespace."
+                    },
+                    {
+                      "description": "The turbopuffer region to use.",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"upsert_columns\": {\n    \"id\": [\n      \"e4d8efed-2f7b-82d6-5ae1-c39a6a8b1482\",\n      \"bb51f2c6-a405-dd2d-9e4d-6fe85273a7f8\"\n    ],\n    \"vector\": [\n      [\n        6535.826051170545,\n        2423.9596442944735\n      ],\n      [\n        1682.0870428752821,\n        2109.8469321907396\n      ]\n    ]\n  },\n  \"upsert_rows\": [\n    {\n      \"id\": \"52e85eae-b63d-7417-f08b-03ea81fe529c\",\n      \"vector\": [\n        6053.801745317444,\n        3758.215854360513\n      ]\n    },\n    {\n      \"id\": \"9187d82a-a836-ae23-e652-1c3a5242c5fb\",\n      \"vector\": [\n        6933.766870222899,\n        7827.455556492268\n      ]\n    }\n  ],\n  \"patch_columns\": {\n    \"id\": [\n      \"761f7890-7a67-4fa8-c6de-2e20737711e9\",\n      \"f56a3108-81f5-feef-f724-d129fde69756\"\n    ],\n    \"vector\": [\n      [\n        7705.02426013153,\n        2018.710691718273\n      ],\n      [\n        8450.548054154622,\n        8824.451971070273\n      ]\n    ]\n  },\n  \"patch_rows\": [\n    {\n      \"id\": \"f874582b-4d59-3b92-3205-659e4a97c7dc\",\n      \"vector\": [\n        2433.826945050157,\n        352.56615660789527\n      ]\n    },\n    {\n      \"id\": \"98d14c97-74bf-d400-9d6b-e3df64b402cc\",\n      \"vector\": [\n        4237.807476165926,\n        8465.043035697323\n      ]\n    }\n  ],\n  \"deletes\": [\n    \"e715648a-de29-a838-447e-3b851e13bc23\",\n    \"ad4fb497-b0a5-1549-a581-aaeb40953ec5\"\n  ],\n  \"upsert_condition\": {},\n  \"patch_condition\": {},\n  \"delete_condition\": {},\n  \"distance_metric\": {},\n  \"schema\": {\n    \"key_0\": \"string\"\n  },\n  \"branch_from_namespace\": \"string\",\n  \"copy_from_namespace\": \"string\",\n  \"delete_by_filter\": {},\n  \"delete_by_filter_allow_partial\": \"<boolean>\",\n  \"patch_by_filter\": {\n    \"patch\": {\n      \"key_0\": 4696,\n      \"key_1\": \"string\",\n      \"key_2\": 3517,\n      \"key_3\": true,\n      \"key_4\": 6031\n    },\n    \"filters\": {}\n  },\n  \"patch_by_filter_allow_partial\": \"<boolean>\",\n  \"return_affected_ids\": false,\n  \"encryption\": {\n    \"mode\": {},\n    \"key_name\": \"string\"\n  },\n  \"disable_backpressure\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": {},\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e4db0cc5-7fef-4516-a5e0-e87bf875503d",
+          "name": "Delete namespace.",
+          "request": {
+            "name": "Delete namespace.",
+            "description": {
+              "content": "Delete namespace.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "namespaces",
+                ":namespace"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) The name of the namespace."
+                },
+                {
+                  "description": "The turbopuffer region to use.",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4b408db7-d902-42c2-9c8a-1906f916a7cf",
+              "name": "The status of the deletion request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "namespaces",
+                    ":namespace"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The name of the namespace."
+                    },
+                    {
+                      "description": "The turbopuffer region to use.",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0bc7040f-b0a3-47dc-bb4a-d41f584466fc",
+              "name": "An error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "namespaces",
+                    ":namespace"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The name of the namespace."
+                    },
+                    {
+                      "description": "The turbopuffer region to use.",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": {},\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "22e89773-bc69-40d8-bd43-495d4c4b425e",
+          "name": "Query, filter, full-text search and vector search documents.",
+          "request": {
+            "name": "Query, filter, full-text search and vector search documents.",
+            "description": {
+              "content": "Query, filter, full-text search and vector search documents.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "namespaces",
+                ":namespace",
+                "query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) The name of the namespace."
+                },
+                {
+                  "description": "The turbopuffer region to use.",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"vector_encoding\": {},\n  \"consistency\": {\n    \"level\": {}\n  },\n  \"rank_by\": {},\n  \"top_k\": \"<integer>\",\n  \"filters\": {},\n  \"include_attributes\": \"<boolean>\",\n  \"exclude_attributes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"aggregate_by\": {\n    \"key_0\": 7346,\n    \"key_1\": \"string\",\n    \"key_2\": 2009\n  },\n  \"distance_metric\": {},\n  \"limit\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e65ada2c-6908-4613-8601-f352c7a37220",
+              "name": "The schema of the namespace.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "namespaces",
+                    ":namespace",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The name of the namespace."
+                    },
+                    {
+                      "description": "The turbopuffer region to use.",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"vector_encoding\": {},\n  \"consistency\": {\n    \"level\": {}\n  },\n  \"rank_by\": {},\n  \"top_k\": 9380,\n  \"filters\": {},\n  \"include_attributes\": false,\n  \"exclude_attributes\": [\n    \"string\",\n    \"string\"\n  ],\n  \"aggregate_by\": {\n    \"key_0\": \"string\",\n    \"key_1\": 5259,\n    \"key_2\": \"string\"\n  },\n  \"distance_metric\": {},\n  \"limit\": 9229\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"performance\": {\n    \"cache_hit_ratio\": 2671.4015723996645,\n    \"cache_temperature\": \"string\",\n    \"server_total_ms\": 5367,\n    \"query_execution_ms\": 1647,\n    \"exhaustive_search_count\": 7968,\n    \"approx_namespace_size\": 1145\n  },\n  \"billing\": {\n    \"billable_logical_bytes_queried\": 985,\n    \"billable_logical_bytes_returned\": 5769\n  },\n  \"aggregations\": {\n    \"key_0\": \"string\",\n    \"key_1\": true,\n    \"key_2\": true\n  },\n  \"aggregation_groups\": [\n    {\n      \"key_0\": true\n    },\n    {\n      \"key_0\": \"string\",\n      \"key_1\": false\n    }\n  ],\n  \"rows\": [\n    {\n      \"id\": \"995c2295-b39f-b86e-138c-48e6b22cf6a0\",\n      \"vector\": [\n        7454.078448592708,\n        4146.139720542142\n      ]\n    },\n    {\n      \"id\": \"8dc4cd9f-04d5-8bfb-4c1e-d3cfc8ed5b69\",\n      \"vector\": [\n        9360.463994370115,\n        4681.618290031179\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f06d9055-c254-4cc5-8328-bd0693f7d167",
+              "name": "An error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "namespaces",
+                    ":namespace",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The name of the namespace."
+                    },
+                    {
+                      "description": "The turbopuffer region to use.",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"vector_encoding\": {},\n  \"consistency\": {\n    \"level\": {}\n  },\n  \"rank_by\": {},\n  \"top_k\": 9380,\n  \"filters\": {},\n  \"include_attributes\": false,\n  \"exclude_attributes\": [\n    \"string\",\n    \"string\"\n  ],\n  \"aggregate_by\": {\n    \"key_0\": \"string\",\n    \"key_1\": 5259,\n    \"key_2\": \"string\"\n  },\n  \"distance_metric\": {},\n  \"limit\": 9229\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": {},\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d1c5998b-542e-4ebd-93d1-edc995b8e7ad",
+          "name": "Issue multiple concurrent queries filter or search documents.",
+          "request": {
+            "name": "Issue multiple concurrent queries filter or search documents.",
+            "description": {
+              "content": "Issue multiple concurrent queries filter or search documents.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "namespaces",
+                ":namespace",
+                "query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "stainless_overload",
+                  "value": "multiQuery"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) The name of the namespace."
+                },
+                {
+                  "description": "The turbopuffer region to use.",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"queries\": [\n    {\n      \"rank_by\": {},\n      \"top_k\": \"<integer>\",\n      \"filters\": {},\n      \"include_attributes\": \"<boolean>\",\n      \"exclude_attributes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"aggregate_by\": {\n        \"key_0\": true,\n        \"key_1\": 4771.658794368885\n      },\n      \"distance_metric\": {},\n      \"limit\": \"<integer>\"\n    },\n    {\n      \"rank_by\": {},\n      \"top_k\": \"<integer>\",\n      \"filters\": {},\n      \"include_attributes\": \"<boolean>\",\n      \"exclude_attributes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"aggregate_by\": {\n        \"key_0\": 3794.7254217118507\n      },\n      \"distance_metric\": {},\n      \"limit\": \"<integer>\"\n    }\n  ],\n  \"vector_encoding\": {},\n  \"consistency\": {\n    \"level\": {}\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bd0cc4f5-c6c3-4481-94a5-1a139ef118c5",
+              "name": "The schema of the namespace.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "namespaces",
+                    ":namespace",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The name of the namespace."
+                    },
+                    {
+                      "description": "The turbopuffer region to use.",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"queries\": [\n    {\n      \"rank_by\": {},\n      \"top_k\": 5542,\n      \"filters\": {},\n      \"include_attributes\": true,\n      \"exclude_attributes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"aggregate_by\": {\n        \"key_0\": 1229\n      },\n      \"distance_metric\": {},\n      \"limit\": 8707\n    },\n    {\n      \"rank_by\": {},\n      \"top_k\": 8462,\n      \"filters\": {},\n      \"include_attributes\": false,\n      \"exclude_attributes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"aggregate_by\": {\n        \"key_0\": \"string\",\n        \"key_1\": 9254.211965560822\n      },\n      \"distance_metric\": {},\n      \"limit\": 6700\n    }\n  ],\n  \"vector_encoding\": {},\n  \"consistency\": {\n    \"level\": {}\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"performance\": {\n    \"cache_hit_ratio\": 4084.738840182134,\n    \"cache_temperature\": \"string\",\n    \"server_total_ms\": 395,\n    \"query_execution_ms\": 5714,\n    \"exhaustive_search_count\": 8861,\n    \"approx_namespace_size\": 783\n  },\n  \"billing\": {\n    \"billable_logical_bytes_queried\": 658,\n    \"billable_logical_bytes_returned\": 8928\n  },\n  \"results\": [\n    {\n      \"aggregations\": {\n        \"key_0\": \"string\"\n      },\n      \"aggregation_groups\": [\n        {\n          \"key_0\": 4195,\n          \"key_1\": \"string\",\n          \"key_2\": \"string\"\n        },\n        {\n          \"key_0\": 8276.754901827751,\n          \"key_1\": true\n        }\n      ],\n      \"rows\": [\n        {\n          \"id\": \"6b076406-9e77-d86b-e8a1-404ec05350d4\",\n          \"vector\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        {\n          \"id\": \"db5a403b-c784-e77a-6d1b-a6af6617a352\",\n          \"vector\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"aggregations\": {\n        \"key_0\": 68\n      },\n      \"aggregation_groups\": [\n        {\n          \"key_0\": 5150,\n          \"key_1\": 9977.90764362835,\n          \"key_2\": true\n        },\n        {\n          \"key_0\": 9796\n        }\n      ],\n      \"rows\": [\n        {\n          \"id\": \"f230b564-9eaf-8c63-cbb3-7ab1d4ae172f\",\n          \"vector\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        {\n          \"id\": \"0172e77b-4044-c628-4f70-ea5717c32b64\",\n          \"vector\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0696cd43-1480-44d3-b2f8-6a8e9763975e",
+              "name": "An error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "namespaces",
+                    ":namespace",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The name of the namespace."
+                    },
+                    {
+                      "description": "The turbopuffer region to use.",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"queries\": [\n    {\n      \"rank_by\": {},\n      \"top_k\": 5542,\n      \"filters\": {},\n      \"include_attributes\": true,\n      \"exclude_attributes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"aggregate_by\": {\n        \"key_0\": 1229\n      },\n      \"distance_metric\": {},\n      \"limit\": 8707\n    },\n    {\n      \"rank_by\": {},\n      \"top_k\": 8462,\n      \"filters\": {},\n      \"include_attributes\": false,\n      \"exclude_attributes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"aggregate_by\": {\n        \"key_0\": \"string\",\n        \"key_1\": 9254.211965560822\n      },\n      \"distance_metric\": {},\n      \"limit\": 6700\n    }\n  ],\n  \"vector_encoding\": {},\n  \"consistency\": {\n    \"level\": {}\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": {},\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bcfec695-3a79-46eb-aeca-2701183012cf",
+          "name": "Creates an instant, copy-on-write clone of a namespace.",
+          "request": {
+            "name": "Creates an instant, copy-on-write clone of a namespace.",
+            "description": {
+              "content": "Creates an instant, copy-on-write clone of a namespace.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "namespaces",
+                "{{namespace}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "stainless_overload",
+                  "value": "branchFrom"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The turbopuffer region to use.",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"source_namespace\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7426cc7a-1b0c-465f-84ce-394ff1f145e8",
+              "name": "The status of the request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "namespaces",
+                    "{{namespace}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The turbopuffer region to use.",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source_namespace\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": {},\n  \"message\": \"string\",\n  \"rows_affected\": 4587,\n  \"billing\": {\n    \"billable_logical_bytes_written\": 5843,\n    \"query\": {\n      \"billable_logical_bytes_queried\": 3156,\n      \"billable_logical_bytes_returned\": 2632\n    }\n  },\n  \"rows_upserted\": 8569,\n  \"rows_patched\": 5654,\n  \"rows_deleted\": 5863,\n  \"rows_remaining\": false,\n  \"upserted_ids\": [\n    \"9fa48f79-ea2b-4834-33ab-16277737b8c6\",\n    \"fba8f78d-c737-d5d7-b247-817f49f28819\"\n  ],\n  \"patched_ids\": [\n    \"209147dc-1133-aa16-9618-8a802ff464c9\",\n    \"2bd57ca8-ba5d-ec37-40bd-a5f680be1ef0\"\n  ],\n  \"deleted_ids\": [\n    \"20ef3fec-29dd-c572-f2c5-a91e29ea079e\",\n    \"5f88c132-f2ac-5664-725d-f02ef0e1ffbe\"\n  ],\n  \"performance\": {\n    \"server_total_ms\": 2146\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2ee9154b-6caf-4070-aebe-bcb617248b70",
+              "name": "An error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "namespaces",
+                    "{{namespace}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The turbopuffer region to use.",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source_namespace\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": {},\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c603e295-90df-441d-88f4-bbceb8647bbc",
+          "name": "Copy all documents from another namespace into this one.",
+          "request": {
+            "name": "Copy all documents from another namespace into this one.",
+            "description": {
+              "content": "Copy all documents from another namespace into this one.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "namespaces",
+                "{{namespace}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "stainless_overload",
+                  "value": "copyFrom"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The turbopuffer region to use.",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"source_namespace\": \"<string>\",\n  \"source_api_key\": \"<string>\",\n  \"source_region\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9b895c92-9e93-45f3-b159-8f700bd323aa",
+              "name": "The status of the request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "namespaces",
+                    "{{namespace}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The turbopuffer region to use.",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source_namespace\": \"<string>\",\n  \"source_api_key\": \"<string>\",\n  \"source_region\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": {},\n  \"message\": \"string\",\n  \"rows_affected\": 4587,\n  \"billing\": {\n    \"billable_logical_bytes_written\": 5843,\n    \"query\": {\n      \"billable_logical_bytes_queried\": 3156,\n      \"billable_logical_bytes_returned\": 2632\n    }\n  },\n  \"rows_upserted\": 8569,\n  \"rows_patched\": 5654,\n  \"rows_deleted\": 5863,\n  \"rows_remaining\": false,\n  \"upserted_ids\": [\n    \"9fa48f79-ea2b-4834-33ab-16277737b8c6\",\n    \"fba8f78d-c737-d5d7-b247-817f49f28819\"\n  ],\n  \"patched_ids\": [\n    \"209147dc-1133-aa16-9618-8a802ff464c9\",\n    \"2bd57ca8-ba5d-ec37-40bd-a5f680be1ef0\"\n  ],\n  \"deleted_ids\": [\n    \"20ef3fec-29dd-c572-f2c5-a91e29ea079e\",\n    \"5f88c132-f2ac-5664-725d-f02ef0e1ffbe\"\n  ],\n  \"performance\": {\n    \"server_total_ms\": 2146\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6f910c72-c614-4033-899c-580009945647",
+              "name": "An error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "namespaces",
+                    "{{namespace}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The turbopuffer region to use.",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source_namespace\": \"<string>\",\n  \"source_api_key\": \"<string>\",\n  \"source_region\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": {},\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d2993f11-d6ed-4213-b124-d92700786291",
+          "name": "Explain a query plan.",
+          "request": {
+            "name": "Explain a query plan.",
+            "description": {
+              "content": "Explain a query plan.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "namespaces",
+                ":namespace",
+                "explain_query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "namespace",
+                  "description": "(Required) The name of the namespace."
+                },
+                {
+                  "description": "The turbopuffer region to use.",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"vector_encoding\": {},\n  \"consistency\": {\n    \"level\": {}\n  },\n  \"rank_by\": {},\n  \"top_k\": \"<integer>\",\n  \"filters\": {},\n  \"include_attributes\": \"<boolean>\",\n  \"exclude_attributes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"aggregate_by\": {\n    \"key_0\": 7346,\n    \"key_1\": \"string\",\n    \"key_2\": 2009\n  },\n  \"distance_metric\": {},\n  \"limit\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6ff71e5a-1387-43b0-9a79-3fd6ba7a56ac",
+              "name": "The query plan explanation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "namespaces",
+                    ":namespace",
+                    "explain_query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The name of the namespace."
+                    },
+                    {
+                      "description": "The turbopuffer region to use.",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"vector_encoding\": {},\n  \"consistency\": {\n    \"level\": {}\n  },\n  \"rank_by\": {},\n  \"top_k\": 9380,\n  \"filters\": {},\n  \"include_attributes\": false,\n  \"exclude_attributes\": [\n    \"string\",\n    \"string\"\n  ],\n  \"aggregate_by\": {\n    \"key_0\": \"string\",\n    \"key_1\": 5259,\n    \"key_2\": \"string\"\n  },\n  \"distance_metric\": {},\n  \"limit\": 9229\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"plan_text\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eb8436e9-472c-429a-a970-c6847178516a",
+              "name": "An error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "namespaces",
+                    ":namespace",
+                    "explain_query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "namespace",
+                      "description": "(Required) The name of the namespace."
+                    },
+                    {
+                      "description": "The turbopuffer region to use.",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"vector_encoding\": {},\n  \"consistency\": {\n    \"level\": {}\n  },\n  \"rank_by\": {},\n  \"top_k\": 9380,\n  \"filters\": {},\n  \"include_attributes\": false,\n  \"exclude_attributes\": [\n    \"string\",\n    \"string\"\n  ],\n  \"aggregate_by\": {\n    \"key_0\": \"string\",\n    \"key_1\": 5259,\n    \"key_2\": \"string\"\n  },\n  \"distance_metric\": {},\n  \"limit\": 9229\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": {},\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The turbopuffer region to use.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://{{region}}.turbopuffer.com",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) The name of the namespace.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "namespace"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a5442190-3046-4e05-9e61-86c8fe1b6623",
+    "name": "turbopuffer Namespaces API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "turbopuffer is a fast search engine that combines vector and full-text search using object storage.",
+      "type": "text/plain"
+    }
+  }
+}

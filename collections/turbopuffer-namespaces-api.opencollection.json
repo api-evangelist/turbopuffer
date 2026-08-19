@@ -1,0 +1,338 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "turbopuffer Namespaces API",
+    "version": "0.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Namespaces",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /v1/namespaces",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}.turbopuffer.com/v1/namespaces",
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve the next page of results."
+              },
+              {
+                "name": "prefix",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve only the namespaces that match the prefix."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Limit the number of results per page."
+              }
+            ]
+          },
+          "docs": "List namespaces."
+        },
+        {
+          "info": {
+            "name": "GET /v1/namespaces/{namespace}/schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}.turbopuffer.com/v1/namespaces/:namespace/schema",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The name of the namespace."
+              }
+            ]
+          },
+          "docs": "Get namespace schema."
+        },
+        {
+          "info": {
+            "name": "POST /v1/namespaces/{namespace}/schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}.turbopuffer.com/v1/namespaces/:namespace/schema",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The name of the namespace."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update namespace schema."
+        },
+        {
+          "info": {
+            "name": "GET /v2/namespaces/{namespace}/metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}.turbopuffer.com/v2/namespaces/:namespace/metadata",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The name of the namespace."
+              }
+            ]
+          },
+          "docs": "Get metadata about a namespace."
+        },
+        {
+          "info": {
+            "name": "PATCH /v1/namespaces/{namespace}/metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{region}.turbopuffer.com/v1/namespaces/:namespace/metadata",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The name of the namespace."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update metadata configuration for a namespace."
+        },
+        {
+          "info": {
+            "name": "GET /v1/namespaces/{namespace}/hint_cache_warm",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{region}.turbopuffer.com/v1/namespaces/:namespace/hint_cache_warm",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The name of the namespace."
+              }
+            ]
+          },
+          "docs": "Signal turbopuffer to prepare for low-latency requests."
+        },
+        {
+          "info": {
+            "name": "POST /v1/namespaces/{namespace}/_debug/recall",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}.turbopuffer.com/v1/namespaces/:namespace/_debug/recall",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The name of the namespace."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Evaluate recall."
+        },
+        {
+          "info": {
+            "name": "POST /v2/namespaces/{namespace}",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}.turbopuffer.com/v2/namespaces/:namespace",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The name of the namespace."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create, update, or delete documents."
+        },
+        {
+          "info": {
+            "name": "DELETE /v2/namespaces/{namespace}",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{region}.turbopuffer.com/v2/namespaces/:namespace",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The name of the namespace."
+              }
+            ]
+          },
+          "docs": "Delete namespace."
+        },
+        {
+          "info": {
+            "name": "POST /v2/namespaces/{namespace}/query",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}.turbopuffer.com/v2/namespaces/:namespace/query",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The name of the namespace."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Query, filter, full-text search and vector search documents."
+        },
+        {
+          "info": {
+            "name": "POST /v2/namespaces/{namespace}/query?stainless_overload=multiQuery",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}.turbopuffer.com/v2/namespaces/:namespace/query?stainless_overload=multiQuery",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The name of the namespace."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Issue multiple concurrent queries filter or search documents."
+        },
+        {
+          "info": {
+            "name": "POST /v2/namespaces/{namespace}?stainless_overload=branchFrom",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}.turbopuffer.com/v2/namespaces/:namespace?stainless_overload=branchFrom",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The name of the namespace."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an instant, copy-on-write clone of a namespace."
+        },
+        {
+          "info": {
+            "name": "POST /v2/namespaces/{namespace}?stainless_overload=copyFrom",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}.turbopuffer.com/v2/namespaces/:namespace?stainless_overload=copyFrom",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The name of the namespace."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Copy all documents from another namespace into this one."
+        },
+        {
+          "info": {
+            "name": "POST /v2/namespaces/{namespace}/explain_query",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{region}.turbopuffer.com/v2/namespaces/:namespace/explain_query",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path",
+                "description": "The name of the namespace."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Explain a query plan."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
