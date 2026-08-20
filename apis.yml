@@ -54,6 +54,8 @@ apis:
   humanURL: https://turbopuffer.com/docs/write
   baseURL: https://api.turbopuffer.com
   tags:
+  - Namespaces
+  tags_raw:
   - Write
   - Upsert
   - Namespaces
@@ -69,6 +71,12 @@ apis:
   humanURL: https://turbopuffer.com/docs/query
   baseURL: https://api.turbopuffer.com
   tags:
+  - Query
+  - Vectors
+  - BM25
+  - Hybrid
+  - ANN
+  tags_raw:
   - Query
   - Vector
   - BM25
@@ -173,6 +181,10 @@ apis:
   baseURL: https://github.com/turbopuffer/turbopuffer-csharp
   tags:
   - SDK
+  - C#
+  - Dotnet
+  tags_raw:
+  - SDK
   - CSharp
   - DotNet
   properties:
@@ -186,6 +198,10 @@ apis:
   humanURL: https://github.com/turbopuffer/tpuf-benchmark
   baseURL: https://github.com/turbopuffer/tpuf-benchmark
   tags:
+  - Tooling
+  - Benchmarks
+  - Go
+  tags_raw:
   - Tooling
   - Benchmark
   - Go
