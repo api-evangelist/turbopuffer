@@ -16,6 +16,20 @@ description: >-
   specification via Stainless. Pricing is tiered (Launch, Scale, Enterprise)
   with usage-based metering on storage, writes, and queries on top of monthly
   minimums.
+deliveryModel:
+  model: open-core
+  license: MIT
+  open_source: true
+  commercial: true
+  callable_host: true
+  label: Open core · an OSS project plus a commercial hosted product
+  confidence: high
+  source:
+  - license
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
@@ -227,6 +241,14 @@ apis:
   - type: OpenAPI-Source
     url: https://github.com/turbopuffer/turbopuffer-openapi
 common:
+  - type: IssueTracker
+    url: https://github.com/turbopuffer/turbopuffer-python/issues
+  - type: Releases
+    url: https://github.com/turbopuffer/turbopuffer-python/releases
+  - type: SecurityPolicy
+    url: https://github.com/turbopuffer/turbopuffer-python/blob/main/SECURITY.md
+  - type: ContributionGuide
+    url: https://github.com/turbopuffer/turbopuffer-python/blob/main/CONTRIBUTING.md
   - type: License
     name: MIT
     url: https://github.com/turbopuffer/turbopuffer-python/blob/main/LICENSE
