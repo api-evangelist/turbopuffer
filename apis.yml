@@ -195,8 +195,8 @@ apis:
   baseURL: https://github.com/turbopuffer/turbopuffer-csharp
   tags:
   - SDK
-  - C#
-  - Dotnet
+  - CSharp
+  - DotNet
   tags_raw:
   - SDK
   - CSharp
@@ -213,7 +213,7 @@ apis:
   baseURL: https://github.com/turbopuffer/tpuf-benchmark
   tags:
   - Tooling
-  - Benchmarks
+  - Benchmark
   - Go
   tags_raw:
   - Tooling
