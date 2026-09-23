@@ -1,7 +1,7 @@
 {
   "provider": "turbopuffer",
   "sources": [
-    "turbopuffer-namespaces-api-openapi.yml"
+    "_original/turbopuffer-openapi.yml"
   ],
   "outputs": [
     "turbopuffer-namespaces-api-openapi.yml"
@@ -9,6 +9,27 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "turbopuffer-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "turbopuffer-openapi.yml: tagged paths GET /v1/namespaces -> Namespaces",
+    "turbopuffer-openapi.yml: tagged paths GET /v1/namespaces/{namespace}/schema -> Namespaces",
+    "turbopuffer-openapi.yml: tagged paths POST /v1/namespaces/{namespace}/schema -> Namespaces",
+    "turbopuffer-openapi.yml: tagged paths GET /v2/namespaces/{namespace}/metadata -> Namespaces",
+    "turbopuffer-openapi.yml: tagged paths PATCH /v1/namespaces/{namespace}/metadata -> Namespaces",
+    "turbopuffer-openapi.yml: tagged paths GET /v1/namespaces/{namespace}/hint_cache_warm -> Namespaces",
+    "turbopuffer-openapi.yml: tagged paths POST /v1/namespaces/{namespace}/_debug/recall -> Namespaces",
+    "turbopuffer-openapi.yml: tagged paths POST /v2/namespaces/{namespace} -> Namespaces",
+    "turbopuffer-openapi.yml: tagged paths DELETE /v2/namespaces/{namespace} -> Namespaces",
+    "turbopuffer-openapi.yml: tagged paths POST /v2/namespaces/{namespace}/query -> Namespaces",
+    "turbopuffer-openapi.yml: tagged paths POST /v2/namespaces/{namespace}/query?stainless_overload=multiQuery -> Namespaces",
+    "turbopuffer-openapi.yml: tagged paths POST /v2/namespaces/{namespace}?stainless_overload=branchFrom -> Namespaces",
+    "turbopuffer-openapi.yml: tagged paths POST /v2/namespaces/{namespace}?stainless_overload=copyFrom -> Namespaces",
+    "turbopuffer-openapi.yml: tagged paths POST /v2/namespaces/{namespace}/explain_query -> Namespaces",
+    "turbopuffer-openapi.yml: declared missing tag: Namespaces",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "turbopuffer-namespaces-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
