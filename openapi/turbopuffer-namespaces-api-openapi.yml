@@ -519,208 +519,41 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    SingleQueryResult:
-      type: object
-      properties:
-        aggregations:
-          type: object
-          additionalProperties: true
-        aggregation_groups:
-          type: array
-          items:
-            $ref: '#/components/schemas/AggregationGroup'
-        rows:
-          type: array
-          items:
-            $ref: '#/components/schemas/Row'
     AttributeType:
       description: 'The data type of the attribute. Valid values: string, int, uint, float, uuid, datetime, bool, []string, []int, []uint, []float, []uuid, []datetime, []bool, [DIMS]f16, [DIMS]f32, {}f16.
 
         '
       type: string
-    BranchFromNamespaceConfig:
-      type: object
-      properties:
-        source_namespace:
-          type: string
-          description: The namespace to create an instant, copy-on-write clone of.
-      required:
-      - source_namespace
-    Row:
-      description: A single document, in a row-based format.
-      type: object
-      properties:
-        id:
-          $ref: '#/components/schemas/Id'
-        vector:
-          $ref: '#/components/schemas/Vector'
-      required:
-      - id
-      additionalProperties: true
-    PinningConfig:
-      description: Configuration for namespace pinning.
-      type: object
-      properties:
-        replicas:
-          type: integer
-          format: int64
-          minimum: 1
-          description: The number of read replicas to provision. Defaults to 1 if not specified.
-    CopyFromNamespaceParams:
+    Encryption:
+      description: The encryption configuration for a namespace.
       oneOf:
-      - type: string
-        description: The namespace to copy documents from.
-        x-stainless-skip:
-        - go
-      - $ref: '#/components/schemas/CopyFromNamespaceConfig'
-    PinningConfigResponse:
-      description: 'Configuration for namespace pinning, along with the current status of the pinned namespace.
-
-        '
-      allOf:
-      - $ref: '#/components/schemas/PinningConfig'
       - type: object
+        description: Encrypt the namespace with a customer-managed encryption key (CMEK).
+        title: customer-managed
         properties:
-          status:
-            $ref: '#/components/schemas/PinningStatus'
-    ErrorResponse:
-      description: The response to an unsuccessful request.
-      type: object
-      required:
-      - status
-      - error
-      properties:
-        status:
-          const: error
-          description: The status of the request.
-        error:
-          type: string
-          description: The error message.
-    WriteBilling:
-      description: The billing information for a write request.
-      type: object
-      properties:
-        billable_logical_bytes_written:
-          type: integer
-          description: The number of billable logical bytes written to the namespace.
-        query:
-          $ref: '#/components/schemas/QueryBilling'
-      required:
-      - billable_logical_bytes_written
-    AttributeSchemaConfig:
-      description: 'Detailed configuration for an attribute attached to a document.
+          mode:
+            const: customer-managed
+          key_name:
+            type: string
+            description: 'The identifier of the CMEK key to use for encryption. For GCP, the fully-qualified resource name of the key. For AWS, the ARN of the key.
 
-        '
-      type: object
-      properties:
-        type:
-          $ref: '#/components/schemas/AttributeType'
-        filterable:
-          description: 'Whether or not the attributes can be used in filters.
-
-            '
-          type: boolean
-        regex:
-          description: 'Whether to enable Regex filters on this attribute.
-
-            '
-          type: boolean
-        glob:
-          description: 'Whether to enable Glob filters on this attribute.
-
-            '
-          type: boolean
-        fuzzy:
-          description: 'Whether to enable Fuzzy filters on this attribute.
-
-            '
-          type: boolean
-        full_text_search:
-          $ref: '#/components/schemas/FullTextSearch'
-        ann:
-          $ref: '#/components/schemas/Ann'
-        sparse_knn:
-          $ref: '#/components/schemas/SparseKnn'
-      required:
-      - type
-    MultiQueryResult:
-      description: The result of a multi-query.
-      type: object
-      properties:
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/SingleQueryResult'
-        performance:
-          $ref: '#/components/schemas/QueryPerformance'
-        billing:
-          $ref: '#/components/schemas/QueryBilling'
-      required:
-      - performance
-      - billing
-      - results
-    SparseKnn:
-      description: 'Whether to create a sparse kNN index for the attribute. Requires the `{}f16` type.
-
-        '
-      type: object
-      properties:
-        distance_metric:
-          $ref: '#/components/schemas/SparseDistanceMetric'
-      required:
-      - distance_metric
-    IncludeAttributes:
+              '
+        required:
+        - mode
+        - key_name
+      - type: object
+        description: Use the default server-side encryption (SSE).
+        title: default
+        properties:
+          mode:
+            const: default
+        required:
+        - mode
+    VectorEncoding:
+      description: The encoding to use for vectors in the response.
       oneOf:
-      - description: 'When `true`, include all attributes in the response. When `false`, include no attributes in the response.
-
-          '
-        type: boolean
-      - description: 'Include exactly the specified attributes in the response.
-
-          '
-        type: array
-        items:
-          type: string
-      description: Whether to include attributes in the response.
-    Language:
-      description: 'Describes the language of a text attribute. Defaults to `english`.
-
-        '
-      oneOf:
-      - const: arabic
-      - const: danish
-      - const: dutch
-      - const: english
-      - const: finnish
-      - const: french
-      - const: german
-      - const: greek
-      - const: hungarian
-      - const: italian
-      - const: norwegian
-      - const: portuguese
-      - const: romanian
-      - const: russian
-      - const: spanish
-      - const: swedish
-      - const: tamil
-      - const: turkish
-    FullTextSearch:
-      description: 'Whether this attribute can be used as part of a BM25 full-text search. Requires the `string` or `[]string` type, and by default, BM25-enabled attributes are not filterable. You can override this by setting `filterable: true`.
-
-        '
-      oneOf:
-      - type: boolean
-        x-stainless-skip:
-        - go
-      - $ref: '#/components/schemas/FullTextSearchConfig'
-    AttributeSchema:
-      description: The schema for an attribute attached to a document.
-      anyOf:
-      - $ref: '#/components/schemas/AttributeType'
-        x-stainless-skip:
-        - go
-      - $ref: '#/components/schemas/AttributeSchemaConfig'
+      - const: float
+      - const: base64
     Limit:
       description: Limits the documents returned by a query.
       type: object
@@ -749,373 +582,26 @@ components:
           - limit
       required:
       - total
-    PinningStatus:
-      description: Operational status for a pinned namespace.
+    NamespaceSummary:
+      description: A summary of a namespace.
       type: object
       properties:
-        updated_at:
+        id:
           type: string
-          format: date-time
-          description: The timestamp of the latest pinning status snapshot.
-        ready_replicas:
-          type: integer
-          format: int64
-          description: The number of replicas that are warm and serving traffic.
-        utilization:
-          type: number
-          description: 'Aggregate utilization for the pinned namespace, reported as a value between 0.0 and 1.0.
-
-            '
+          description: The namespace ID.
       required:
-      - updated_at
-      - ready_replicas
-      - utilization
-    QueryBilling:
-      description: The billing information for a query.
-      type: object
-      properties:
-        billable_logical_bytes_queried:
-          type: integer
-          description: The number of billable logical bytes queried from the namespace.
-        billable_logical_bytes_returned:
-          type: integer
-          description: The number of billable logical bytes returned from the query.
-      required:
-      - billable_logical_bytes_queried
-      - billable_logical_bytes_returned
-    Id:
-      anyOf:
-      - description: A UUID.
-        type: string
-        format: uuid
-      - description: A string ID.
-        type: string
-      - description: An integer ID.
-        type: integer
-      description: An identifier for a document.
-    DistanceMetric:
-      anyOf:
-      - const: cosine_distance
-        description: 'Defined as `1 - cosine_similarity` and ranges from 0 to 2. Lower is better.
-
-          '
-      - const: euclidean_squared
-        description: Defined as `sum((x - y)^2)`. Lower is better.
-      description: A function used to calculate vector similarity.
-    Query:
-      description: Query, filter, full-text search and vector search documents.
-      type: object
-      properties:
-        rank_by:
-          description: 'How to rank the documents in the namespace.
-
-            '
-          x-stainless-any: true
-        top_k:
-          description: The number of results to return.
-          type: integer
-        filters:
-          description: 'Exact filters for attributes to refine search results for. Think of it as a SQL WHERE clause.
-
-            '
-          x-stainless-any: true
-        include_attributes:
-          $ref: '#/components/schemas/IncludeAttributes'
-        exclude_attributes:
-          description: 'List of attribute names to exclude from the response. All other attributes will be included in the response.
-
-            '
-          type: array
-          items:
-            type: string
-        aggregate_by:
-          description: 'Aggregations to compute over all documents in the namespace that match the filters.
-
-            '
-          type: object
-          additionalProperties: true
-        group_by:
-          description: 'Groups documents by the specified attributes (the "group key") before computing aggregates. Aggregates are computed separately for each group.
-
-            '
-          type: array
-          items:
-            x-stainless-any: true
-        distance_metric:
-          $ref: '#/components/schemas/DistanceMetric'
-        limit:
-          anyOf:
-          - type: integer
-            x-stainless-skip:
-            - go
-          - $ref: '#/components/schemas/Limit'
-    WritePerformance:
-      description: The performance information for a write request.
-      type: object
-      properties:
-        server_total_ms:
-          type: integer
-          description: Request time measured on the server, in milliseconds.
-      required:
-      - server_total_ms
+      - id
     AggregationGroup:
       description: A single aggregation group.
       type: object
       additionalProperties: true
-    WriteResult:
-      description: The response to a successful write request.
-      type: object
-      properties:
-        status:
-          const: OK
-          description: The status of the request.
-        message:
-          type: string
-          description: A message describing the result of the write request.
-        rows_affected:
-          type: integer
-          description: The number of rows affected by the write request.
-        rows_upserted:
-          type: integer
-          description: The number of rows upserted by the write request.
-        rows_patched:
-          type: integer
-          description: The number of rows patched by the write request.
-        rows_deleted:
-          type: integer
-          description: The number of rows deleted by the write request.
-        rows_remaining:
-          type: boolean
-          description: Whether more documents match the filter for partial operations.
-        upserted_ids:
-          type: array
-          description: 'The IDs of documents that were upserted. Only included when `return_affected_ids` is true and at least one document was upserted.
-
-            '
-          items:
-            $ref: '#/components/schemas/Id'
-        patched_ids:
-          type: array
-          description: 'The IDs of documents that were patched. Only included when `return_affected_ids` is true and at least one document was patched.
-
-            '
-          items:
-            $ref: '#/components/schemas/Id'
-        deleted_ids:
-          type: array
-          description: 'The IDs of documents that were deleted. Only included when `return_affected_ids` is true and at least one document was deleted.
-
-            '
-          items:
-            $ref: '#/components/schemas/Id'
-        billing:
-          $ref: '#/components/schemas/WriteBilling'
-        performance:
-          $ref: '#/components/schemas/WritePerformance'
-      required:
-      - status
-      - message
-      - rows_affected
-      - billing
-    Columns:
-      description: 'A list of documents in columnar format. Each key is a column name, mapped to an array of values for that column.
-
-        '
-      type: object
-      properties:
-        id:
-          type: array
-          description: The IDs of the documents.
-          items:
-            $ref: '#/components/schemas/Id'
-        vector:
-          oneOf:
-          - type: array
-            description: The vector embeddings of the documents.
-            items:
-              $ref: '#/components/schemas/Vector'
-          - $ref: '#/components/schemas/Vector'
-      required:
-      - id
-      additionalProperties:
-        type: array
-        items:
-          x-stainless-any: true
-        description: The attributes attached to each of the documents.
-    Vector:
-      description: A vector embedding associated with a document.
-      oneOf:
-      - description: A dense vector encoded as an array of floats.
-        type: array
-        items:
-          type: number
-          x-turbopuffer-width: 32
-      - description: A dense vector encoded as a base64 string.
-        type: string
-    NamespaceMetadata:
-      description: Metadata about a namespace.
-      type: object
-      properties:
-        schema:
-          description: The schema of the namespace.
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/AttributeSchemaConfig'
-        approx_row_count:
-          type: integer
-          format: int64
-          description: The approximate number of rows in the namespace.
-        approx_logical_bytes:
-          type: integer
-          format: int64
-          description: The approximate number of logical bytes in the namespace.
-        created_at:
-          type: string
-          format: date-time
-          description: The timestamp when the namespace was created.
-        updated_at:
-          type: string
-          format: date-time
-          description: The timestamp when the namespace was last modified by a write operation.
-        encryption:
-          $ref: '#/components/schemas/Encryption'
-        index:
-          oneOf:
-          - type: object
-            title: index-up-to-date
-            properties:
-              status:
-                const: up-to-date
-            required:
-            - status
-          - type: object
-            title: index-updating
-            properties:
-              status:
-                const: updating
-              unindexed_bytes:
-                type: integer
-                description: The number of bytes in the namespace that are in the write-ahead log but have not yet been indexed.
-            required:
-            - status
-            - unindexed_bytes
-        pinning:
-          $ref: '#/components/schemas/PinningConfigResponse'
-      required:
-      - schema
-      - approx_logical_bytes
-      - approx_row_count
-      - created_at
-      - updated_at
-      - encryption
-      - index
-    Encryption:
-      description: The encryption configuration for a namespace.
-      oneOf:
-      - type: object
-        description: Encrypt the namespace with a customer-managed encryption key (CMEK).
-        title: customer-managed
-        properties:
-          mode:
-            const: customer-managed
-          key_name:
-            type: string
-            description: 'The identifier of the CMEK key to use for encryption. For GCP, the fully-qualified resource name of the key. For AWS, the ARN of the key.
-
-              '
-        required:
-        - mode
-        - key_name
-      - type: object
-        description: Use the default server-side encryption (SSE).
-        title: default
-        properties:
-          mode:
-            const: default
-        required:
-        - mode
-    QueryPerformance:
-      description: The performance information for a query.
-      type: object
-      properties:
-        cache_hit_ratio:
-          type: number
-          description: The ratio of cache hits to total cache lookups.
-        cache_temperature:
-          type: string
-          description: A qualitative description of the cache hit ratio (`hot`, `warm`, or `cold`).
-        server_total_ms:
-          type: integer
-          description: 'Request time measured on the server, including time spent waiting for other queries to complete if the namespace was at its concurrency limit.
-
-            '
-        query_execution_ms:
-          type: integer
-          description: 'Request time measured on the server, excluding time spent waiting due to the namespace concurrency limit.
-
-            '
-        exhaustive_search_count:
-          type: integer
-          description: The number of unindexed documents processed by the query.
-        approx_namespace_size:
-          type: integer
-          description: the approximate number of documents in the namespace.
-      required:
-      - cache_hit_ratio
-      - cache_temperature
-      - server_total_ms
-      - query_execution_ms
-      - exhaustive_search_count
-      - approx_namespace_size
-    FullTextSearchConfig:
-      description: Configuration options for full-text search.
-      type: object
-      properties:
-        k1:
-          type: number
-          description: 'The `k1` term saturation parameter for BM25. Defaults to `1.2`.
-
-            '
-        b:
-          type: number
-          description: 'The `b` document length normalization parameter for BM25. Defaults to `0.75`.
-
-            '
-        language:
-          $ref: '#/components/schemas/Language'
-        stemming:
-          type: boolean
-          description: 'Language-specific stemming for the text. Defaults to `false` (i.e., do not stem).
-
-            '
-        remove_stopwords:
-          type: boolean
-          description: 'Removes common words from the text based on language. Defaults to `true` (i.e. remove common words).
-
-            '
-        ascii_folding:
-          type: boolean
-          description: 'Whether to convert each non-ASCII character in a token to its ASCII equivalent, if one exists (e.g., à -> a). Defaults to `false` (i.e., no folding).
-
-            '
-        case_sensitive:
-          type: boolean
-          description: 'Whether searching is case-sensitive. Defaults to `false` (i.e. case-insensitive).
-
-            '
-        max_token_length:
-          type: integer
-          description: 'Maximum length of a token in bytes. Tokens larger than this value during tokenization will be filtered out. Has to be between `1` and `254` (inclusive). Defaults to `39`.
-
-            '
-        tokenizer:
-          $ref: '#/components/schemas/Tokenizer'
-    AnnConfig:
-      description: Configuration options for ANN (Approximate Nearest Neighbor) indexing.
-      type: object
-      properties:
-        distance_metric:
-          $ref: '#/components/schemas/DistanceMetric'
+    AttributeSchema:
+      description: The schema for an attribute attached to a document.
+      anyOf:
+      - $ref: '#/components/schemas/AttributeType'
+        x-stainless-skip:
+        - go
+      - $ref: '#/components/schemas/AttributeSchemaConfig'
     PatchByFilter:
       description: The patch and filter specifying which documents to patch.
       required:
@@ -1128,13 +614,15 @@ components:
         filters:
           x-stainless-any: true
           description: Filter by attributes. Same syntax as the query endpoint.
-    BranchFromNamespaceParams:
-      oneOf:
-      - type: string
-        description: The namespace to create an instant, copy-on-write clone of.
-        x-stainless-skip:
-        - go
-      - $ref: '#/components/schemas/BranchFromNamespaceConfig'
+    WritePerformance:
+      description: The performance information for a write request.
+      type: object
+      properties:
+        server_total_ms:
+          type: integer
+          description: Request time measured on the server, in milliseconds.
+      required:
+      - server_total_ms
     SparseDistanceMetric:
       anyOf:
       - const: dot_product
@@ -1142,49 +630,15 @@ components:
 
           '
       description: A function used to calculate sparse vector similarity.
-    QueryConfig:
-      description: Configuration options for a query.
-      type: object
-      properties:
-        vector_encoding:
-          $ref: '#/components/schemas/VectorEncoding'
-        consistency:
-          description: The consistency level for a query.
-          type: object
-          properties:
-            level:
-              anyOf:
-              - const: strong
-                description: 'Strong consistency. Requires a round-trip to object storage to fetch the latest writes.
+    FullTextSearch:
+      description: 'Whether this attribute can be used as part of a BM25 full-text search. Requires the `string` or `[]string` type, and by default, BM25-enabled attributes are not filterable. You can override this by setting `filterable: true`.
 
-                  '
-              - const: eventual
-                description: 'Eventual consistency. Does not require a round-trip to object storage, but may not see the latest writes.
-
-                  '
-              description: The query's consistency level.
-    NamespaceMetadataPatch:
-      description: Request to update namespace metadata configuration.
-      type: object
-      properties:
-        pinning:
-          description: 'Configuration for namespace pinning.
-
-            - Missing field: no change to pinning configuration
-
-            - `null` or `false`: explicitly remove pinning
-
-            - `true`: enable pinning with default configuration
-
-            - Object: set pinning configuration
-
-            '
-          oneOf:
-          - type: 'null'
-          - type: boolean
-            x-stainless-skip:
-            - go
-          - $ref: '#/components/schemas/PinningConfig'
+        '
+      oneOf:
+      - type: boolean
+        x-stainless-skip:
+        - go
+      - $ref: '#/components/schemas/FullTextSearchConfig'
     CopyFromNamespaceConfig:
       type: object
       properties:
@@ -1199,19 +653,29 @@ components:
           description: (Optional) The region of the source namespace.
       required:
       - source_namespace
-    VectorEncoding:
-      description: The encoding to use for vectors in the response.
+    Language:
+      description: 'Describes the language of a text attribute. Defaults to `english`.
+
+        '
       oneOf:
-      - const: float
-      - const: base64
-    Tokenizer:
-      description: The tokenizer to use for full-text search on an attribute. Defaults to `word_v3`.
-      oneOf:
-      - const: pre_tokenized_array
-      - const: word_v0
-      - const: word_v1
-      - const: word_v2
-      - const: word_v3
+      - const: arabic
+      - const: danish
+      - const: dutch
+      - const: english
+      - const: finnish
+      - const: french
+      - const: german
+      - const: greek
+      - const: hungarian
+      - const: italian
+      - const: norwegian
+      - const: portuguese
+      - const: romanian
+      - const: russian
+      - const: spanish
+      - const: swedish
+      - const: tamil
+      - const: turkish
     QueryResult:
       description: The result of a query.
       type: object
@@ -1226,15 +690,6 @@ components:
         required:
         - performance
         - billing
-    NamespaceSummary:
-      description: A summary of a namespace.
-      type: object
-      properties:
-        id:
-          type: string
-          description: The namespace ID.
-      required:
-      - id
     Write:
       description: Create, update, or delete documents.
       type: object
@@ -1316,6 +771,551 @@ components:
         x-stainless-skip:
         - go
       - $ref: '#/components/schemas/AnnConfig'
+    Vector:
+      description: A vector embedding associated with a document.
+      oneOf:
+      - description: A dense vector encoded as an array of floats.
+        type: array
+        items:
+          type: number
+          x-turbopuffer-width: 32
+      - description: A dense vector encoded as a base64 string.
+        type: string
+    IncludeAttributes:
+      oneOf:
+      - description: 'When `true`, include all attributes in the response. When `false`, include no attributes in the response.
+
+          '
+        type: boolean
+      - description: 'Include exactly the specified attributes in the response.
+
+          '
+        type: array
+        items:
+          type: string
+      description: Whether to include attributes in the response.
+    AnnConfig:
+      description: Configuration options for ANN (Approximate Nearest Neighbor) indexing.
+      type: object
+      properties:
+        distance_metric:
+          $ref: '#/components/schemas/DistanceMetric'
+    FullTextSearchConfig:
+      description: Configuration options for full-text search.
+      type: object
+      properties:
+        k1:
+          type: number
+          description: 'The `k1` term saturation parameter for BM25. Defaults to `1.2`.
+
+            '
+        b:
+          type: number
+          description: 'The `b` document length normalization parameter for BM25. Defaults to `0.75`.
+
+            '
+        language:
+          $ref: '#/components/schemas/Language'
+        stemming:
+          type: boolean
+          description: 'Language-specific stemming for the text. Defaults to `false` (i.e., do not stem).
+
+            '
+        remove_stopwords:
+          type: boolean
+          description: 'Removes common words from the text based on language. Defaults to `true` (i.e. remove common words).
+
+            '
+        ascii_folding:
+          type: boolean
+          description: 'Whether to convert each non-ASCII character in a token to its ASCII equivalent, if one exists (e.g., à -> a). Defaults to `false` (i.e., no folding).
+
+            '
+        case_sensitive:
+          type: boolean
+          description: 'Whether searching is case-sensitive. Defaults to `false` (i.e. case-insensitive).
+
+            '
+        max_token_length:
+          type: integer
+          description: 'Maximum length of a token in bytes. Tokens larger than this value during tokenization will be filtered out. Has to be between `1` and `254` (inclusive). Defaults to `39`.
+
+            '
+        tokenizer:
+          $ref: '#/components/schemas/Tokenizer'
+    BranchFromNamespaceConfig:
+      type: object
+      properties:
+        source_namespace:
+          type: string
+          description: The namespace to create an instant, copy-on-write clone of.
+      required:
+      - source_namespace
+    Tokenizer:
+      description: The tokenizer to use for full-text search on an attribute. Defaults to `word_v3`.
+      oneOf:
+      - const: pre_tokenized_array
+      - const: word_v0
+      - const: word_v1
+      - const: word_v2
+      - const: word_v3
+    QueryConfig:
+      description: Configuration options for a query.
+      type: object
+      properties:
+        vector_encoding:
+          $ref: '#/components/schemas/VectorEncoding'
+        consistency:
+          description: The consistency level for a query.
+          type: object
+          properties:
+            level:
+              anyOf:
+              - const: strong
+                description: 'Strong consistency. Requires a round-trip to object storage to fetch the latest writes.
+
+                  '
+              - const: eventual
+                description: 'Eventual consistency. Does not require a round-trip to object storage, but may not see the latest writes.
+
+                  '
+              description: The query's consistency level.
+    SparseKnn:
+      description: 'Whether to create a sparse kNN index for the attribute. Requires the `{}f16` type.
+
+        '
+      type: object
+      properties:
+        distance_metric:
+          $ref: '#/components/schemas/SparseDistanceMetric'
+      required:
+      - distance_metric
+    Query:
+      description: Query, filter, full-text search and vector search documents.
+      type: object
+      properties:
+        rank_by:
+          description: 'How to rank the documents in the namespace.
+
+            '
+          x-stainless-any: true
+        top_k:
+          description: The number of results to return.
+          type: integer
+        filters:
+          description: 'Exact filters for attributes to refine search results for. Think of it as a SQL WHERE clause.
+
+            '
+          x-stainless-any: true
+        include_attributes:
+          $ref: '#/components/schemas/IncludeAttributes'
+        exclude_attributes:
+          description: 'List of attribute names to exclude from the response. All other attributes will be included in the response.
+
+            '
+          type: array
+          items:
+            type: string
+        aggregate_by:
+          description: 'Aggregations to compute over all documents in the namespace that match the filters.
+
+            '
+          type: object
+          additionalProperties: true
+        group_by:
+          description: 'Groups documents by the specified attributes (the "group key") before computing aggregates. Aggregates are computed separately for each group.
+
+            '
+          type: array
+          items:
+            x-stainless-any: true
+        distance_metric:
+          $ref: '#/components/schemas/DistanceMetric'
+        limit:
+          anyOf:
+          - type: integer
+            x-stainless-skip:
+            - go
+          - $ref: '#/components/schemas/Limit'
+    QueryPerformance:
+      description: The performance information for a query.
+      type: object
+      properties:
+        cache_hit_ratio:
+          type: number
+          description: The ratio of cache hits to total cache lookups.
+        cache_temperature:
+          type: string
+          description: A qualitative description of the cache hit ratio (`hot`, `warm`, or `cold`).
+        server_total_ms:
+          type: integer
+          description: 'Request time measured on the server, including time spent waiting for other queries to complete if the namespace was at its concurrency limit.
+
+            '
+        query_execution_ms:
+          type: integer
+          description: 'Request time measured on the server, excluding time spent waiting due to the namespace concurrency limit.
+
+            '
+        exhaustive_search_count:
+          type: integer
+          description: The number of unindexed documents processed by the query.
+        approx_namespace_size:
+          type: integer
+          description: the approximate number of documents in the namespace.
+      required:
+      - cache_hit_ratio
+      - cache_temperature
+      - server_total_ms
+      - query_execution_ms
+      - exhaustive_search_count
+      - approx_namespace_size
+    WriteBilling:
+      description: The billing information for a write request.
+      type: object
+      properties:
+        billable_logical_bytes_written:
+          type: integer
+          description: The number of billable logical bytes written to the namespace.
+        query:
+          $ref: '#/components/schemas/QueryBilling'
+      required:
+      - billable_logical_bytes_written
+    BranchFromNamespaceParams:
+      oneOf:
+      - type: string
+        description: The namespace to create an instant, copy-on-write clone of.
+        x-stainless-skip:
+        - go
+      - $ref: '#/components/schemas/BranchFromNamespaceConfig'
+    NamespaceMetadata:
+      description: Metadata about a namespace.
+      type: object
+      properties:
+        schema:
+          description: The schema of the namespace.
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/AttributeSchemaConfig'
+        approx_row_count:
+          type: integer
+          format: int64
+          description: The approximate number of rows in the namespace.
+        approx_logical_bytes:
+          type: integer
+          format: int64
+          description: The approximate number of logical bytes in the namespace.
+        created_at:
+          type: string
+          format: date-time
+          description: The timestamp when the namespace was created.
+        updated_at:
+          type: string
+          format: date-time
+          description: The timestamp when the namespace was last modified by a write operation.
+        encryption:
+          $ref: '#/components/schemas/Encryption'
+        index:
+          oneOf:
+          - type: object
+            title: index-up-to-date
+            properties:
+              status:
+                const: up-to-date
+            required:
+            - status
+          - type: object
+            title: index-updating
+            properties:
+              status:
+                const: updating
+              unindexed_bytes:
+                type: integer
+                description: The number of bytes in the namespace that are in the write-ahead log but have not yet been indexed.
+            required:
+            - status
+            - unindexed_bytes
+        pinning:
+          $ref: '#/components/schemas/PinningConfigResponse'
+      required:
+      - schema
+      - approx_logical_bytes
+      - approx_row_count
+      - created_at
+      - updated_at
+      - encryption
+      - index
+    Id:
+      anyOf:
+      - description: A UUID.
+        type: string
+        format: uuid
+      - description: A string ID.
+        type: string
+      - description: An integer ID.
+        type: integer
+      description: An identifier for a document.
+    Row:
+      description: A single document, in a row-based format.
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Id'
+        vector:
+          $ref: '#/components/schemas/Vector'
+      required:
+      - id
+      additionalProperties: true
+    WriteResult:
+      description: The response to a successful write request.
+      type: object
+      properties:
+        status:
+          const: OK
+          description: The status of the request.
+        message:
+          type: string
+          description: A message describing the result of the write request.
+        rows_affected:
+          type: integer
+          description: The number of rows affected by the write request.
+        rows_upserted:
+          type: integer
+          description: The number of rows upserted by the write request.
+        rows_patched:
+          type: integer
+          description: The number of rows patched by the write request.
+        rows_deleted:
+          type: integer
+          description: The number of rows deleted by the write request.
+        rows_remaining:
+          type: boolean
+          description: Whether more documents match the filter for partial operations.
+        upserted_ids:
+          type: array
+          description: 'The IDs of documents that were upserted. Only included when `return_affected_ids` is true and at least one document was upserted.
+
+            '
+          items:
+            $ref: '#/components/schemas/Id'
+        patched_ids:
+          type: array
+          description: 'The IDs of documents that were patched. Only included when `return_affected_ids` is true and at least one document was patched.
+
+            '
+          items:
+            $ref: '#/components/schemas/Id'
+        deleted_ids:
+          type: array
+          description: 'The IDs of documents that were deleted. Only included when `return_affected_ids` is true and at least one document was deleted.
+
+            '
+          items:
+            $ref: '#/components/schemas/Id'
+        billing:
+          $ref: '#/components/schemas/WriteBilling'
+        performance:
+          $ref: '#/components/schemas/WritePerformance'
+      required:
+      - status
+      - message
+      - rows_affected
+      - billing
+    Columns:
+      description: 'A list of documents in columnar format. Each key is a column name, mapped to an array of values for that column.
+
+        '
+      type: object
+      properties:
+        id:
+          type: array
+          description: The IDs of the documents.
+          items:
+            $ref: '#/components/schemas/Id'
+        vector:
+          oneOf:
+          - type: array
+            description: The vector embeddings of the documents.
+            items:
+              $ref: '#/components/schemas/Vector'
+          - $ref: '#/components/schemas/Vector'
+      required:
+      - id
+      additionalProperties:
+        type: array
+        items:
+          x-stainless-any: true
+        description: The attributes attached to each of the documents.
+    PinningConfig:
+      description: Configuration for namespace pinning.
+      type: object
+      properties:
+        replicas:
+          type: integer
+          format: int64
+          minimum: 1
+          description: The number of read replicas to provision. Defaults to 1 if not specified.
+    DistanceMetric:
+      anyOf:
+      - const: cosine_distance
+        description: 'Defined as `1 - cosine_similarity` and ranges from 0 to 2. Lower is better.
+
+          '
+      - const: euclidean_squared
+        description: Defined as `sum((x - y)^2)`. Lower is better.
+      description: A function used to calculate vector similarity.
+    PinningStatus:
+      description: Operational status for a pinned namespace.
+      type: object
+      properties:
+        updated_at:
+          type: string
+          format: date-time
+          description: The timestamp of the latest pinning status snapshot.
+        ready_replicas:
+          type: integer
+          format: int64
+          description: The number of replicas that are warm and serving traffic.
+        utilization:
+          type: number
+          description: 'Aggregate utilization for the pinned namespace, reported as a value between 0.0 and 1.0.
+
+            '
+      required:
+      - updated_at
+      - ready_replicas
+      - utilization
+    AttributeSchemaConfig:
+      description: 'Detailed configuration for an attribute attached to a document.
+
+        '
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/AttributeType'
+        filterable:
+          description: 'Whether or not the attributes can be used in filters.
+
+            '
+          type: boolean
+        regex:
+          description: 'Whether to enable Regex filters on this attribute.
+
+            '
+          type: boolean
+        glob:
+          description: 'Whether to enable Glob filters on this attribute.
+
+            '
+          type: boolean
+        fuzzy:
+          description: 'Whether to enable Fuzzy filters on this attribute.
+
+            '
+          type: boolean
+        full_text_search:
+          $ref: '#/components/schemas/FullTextSearch'
+        ann:
+          $ref: '#/components/schemas/Ann'
+        sparse_knn:
+          $ref: '#/components/schemas/SparseKnn'
+      required:
+      - type
+    SingleQueryResult:
+      type: object
+      properties:
+        aggregations:
+          type: object
+          additionalProperties: true
+        aggregation_groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/AggregationGroup'
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/Row'
+    CopyFromNamespaceParams:
+      oneOf:
+      - type: string
+        description: The namespace to copy documents from.
+        x-stainless-skip:
+        - go
+      - $ref: '#/components/schemas/CopyFromNamespaceConfig'
+    MultiQueryResult:
+      description: The result of a multi-query.
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/SingleQueryResult'
+        performance:
+          $ref: '#/components/schemas/QueryPerformance'
+        billing:
+          $ref: '#/components/schemas/QueryBilling'
+      required:
+      - performance
+      - billing
+      - results
+    QueryBilling:
+      description: The billing information for a query.
+      type: object
+      properties:
+        billable_logical_bytes_queried:
+          type: integer
+          description: The number of billable logical bytes queried from the namespace.
+        billable_logical_bytes_returned:
+          type: integer
+          description: The number of billable logical bytes returned from the query.
+      required:
+      - billable_logical_bytes_queried
+      - billable_logical_bytes_returned
+    ErrorResponse:
+      description: The response to an unsuccessful request.
+      type: object
+      required:
+      - status
+      - error
+      properties:
+        status:
+          const: error
+          description: The status of the request.
+        error:
+          type: string
+          description: The error message.
+    PinningConfigResponse:
+      description: 'Configuration for namespace pinning, along with the current status of the pinned namespace.
+
+        '
+      allOf:
+      - $ref: '#/components/schemas/PinningConfig'
+      - type: object
+        properties:
+          status:
+            $ref: '#/components/schemas/PinningStatus'
+    NamespaceMetadataPatch:
+      description: Request to update namespace metadata configuration.
+      type: object
+      properties:
+        pinning:
+          description: 'Configuration for namespace pinning.
+
+            - Missing field: no change to pinning configuration
+
+            - `null` or `false`: explicitly remove pinning
+
+            - `true`: enable pinning with default configuration
+
+            - Object: set pinning configuration
+
+            '
+          oneOf:
+          - type: 'null'
+          - type: boolean
+            x-stainless-skip:
+            - go
+          - $ref: '#/components/schemas/PinningConfig'
   parameters:
     namespace:
       name: namespace
